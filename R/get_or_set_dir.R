@@ -6,7 +6,7 @@
 #'@param source_path, character, where raw data will be stored in a project.
 #'@param output_path, character, where the output of an analysis will be saved.
 #'@param other_dirs, character vector with var name. the name will be assigned and be returned to global env.
-#'@param setwd_in, name, source path default. when the main_trunk_as_wd is set as F, this var will be set as new wd.
+#'@param Change_wd, Boolean; Wether set source path as the working dir.
 #'@return return a summary about working dir and the source and output dir.
 #'@examples
 #'\dontrun{# set the dir as wd:
@@ -14,13 +14,13 @@
 #'    source_path = "0_data_source/",
 #'    output_path = "2_output/",
 #'    other_dirs = c(function_path = "DIY Function/", other_dir_test = "Test dir"),
-#'    setwd_in = source_path)
+#'    Change_wd = F)
 #'# set the source as wd:
 #' get_or_set_dir(main_trunk_as_wd = F,
 #'    source_path = "0_data_source/",
 #'    output_path = "2_output/",
 #'    other_dirs = c(function_path = "DIY Function/", Dir_test = "Test dir"),
-#'    setwd_in = source_path)
+#'    Change_wd = T)
 #'}
 #'@export
 
@@ -31,7 +31,7 @@ get_or_set_dir <- function(main_trunk_as_wd = F,
                            source_path = "0_data_source/",
                            output_path = "2_output/",
                            other_dirs = c(function_path = "DIY Function/"),
-                           setwd_in = source_path){
+                           Change_wd = T){
   script_dir <- rstudioapi::getActiveDocumentContext()
   main_path <<- sub("/[^/]+.R$", "/", script_dir[[2]])
 
@@ -50,8 +50,8 @@ get_or_set_dir <- function(main_trunk_as_wd = F,
     ### return the dirname to ClobalEnv.
     try(assign(x = other_dirs[i] %>% names(), value = path, envir = .GlobalEnv))
   }
-  if(main_trunk_as_wd == F & is.null(setwd_in) == F){
-    setwd(setwd_in)
+  if(main_trunk_as_wd == F & Change_wd == T){
+    setwd(source_path)
   }
   ### 询问是否要自动替换工作目录.
   cat("Working Dir was set to be ", getwd(), "\nsource_path  was", source_path, "\noutput_path was ", output_path, "\nAnd function_path was", function_path, "\t\n\nAll of them were renewed to function!!")
@@ -62,7 +62,7 @@ get_or_set_dir <- function(main_trunk_as_wd = F,
 
 ## no need to export, cause the useres didn't need this function.
  path_create <- function(path){
-  if (dir.exists(path) == F) { dir.create(path, showWarnings = F, recursive = T) }
+  if (dir.exists(path) == F) {dir.create(path, showWarnings = F, recursive = T)}
 }
 
 

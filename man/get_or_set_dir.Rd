@@ -12,7 +12,7 @@ get_or_set_dir(
   source_path = "0_data_source/",
   output_path = "2_output/",
   other_dirs = c(function_path = "DIY Function/"),
-  setwd_in = source_path
+  Change_wd = T
 )
 }
 \arguments{
@@ -24,7 +24,7 @@ get_or_set_dir(
 
 \item{other_dirs, }{character vector with var name. the name will be assigned and be returned to global env.}
 
-\item{setwd_in, }{name, source path default. when the main_trunk_as_wd is set as F, this var will be set as new wd.}
+\item{Change_wd, }{Boolean; Wether set source path as the working dir.}
 }
 \value{
 return a summary about working dir and the source and output dir.
@@ -41,12 +41,12 @@ get_or_set_dir(main_trunk_as_wd = T,
    source_path = "0_data_source/",
    output_path = "2_output/",
    other_dirs = c(function_path = "DIY Function/", other_dir_test = "Test dir"),
-   setwd_in = source_path)
+   Change_wd = F)
 # set the source as wd:
 get_or_set_dir(main_trunk_as_wd = F,
    source_path = "0_data_source/",
    output_path = "2_output/",
    other_dirs = c(function_path = "DIY Function/", Dir_test = "Test dir"),
-   setwd_in = source_path)
+   Change_wd = T)
 }
 }

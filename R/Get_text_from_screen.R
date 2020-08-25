@@ -14,7 +14,9 @@
 #'q
 #'}
 #'@return text by line. trans imformation into text and can be value assigned to other vars.
+#'@export
 
+### Function needs to be exported. or else can't be accessed nor used by other users.
 Redirect_text_from_screen <-  function(my_message){
   ### 从屏幕输出中获取结果。
   ### 将结果文字返回。
