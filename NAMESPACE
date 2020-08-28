@@ -2,6 +2,7 @@
 
 export(Redirect_text_from_screen)
 export(Test_reread_data_from_sysdata)
+export(Test_reread_data_from_sysdata2)
 export(fast_notes)
 export(get_a_counter)
 export(get_colors)

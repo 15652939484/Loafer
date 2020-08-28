@@ -7,11 +7,16 @@
 #' @return re
 #' @export
 
-
-
 Test_reread_data_from_sysdata <- function(){
+  Loafer:::.packageName %>% cat()
+  Loafer:::Greek_to_Enl_df
+}
 
-Loafer:::.packageName %>% cat()
-Loafer:::Greek_to_Enl_df
 
+#' Test_reread_data_from_sysdata
+#' Test to read the data by use the dataname directly in R/sysdata.rda.  ##
+#' @export
+Test_reread_data_from_sysdata2 <- function(){
+  Loafer:::.packageName %>% cat()
+  Greek_to_Enl_df
 }
