@@ -60,15 +60,13 @@ get_or_set_dir <- function(main_trunk_as_wd = F,
     setwd(real_time_source_path) ## 虽然source_path 被赋值为全局变量，但是在这里面不能直接被调用更新，所以需要手动拼出来这个文件夹。
   }
   ### 询问是否要自动替换工作目录.
-  cat("Working Dir was set to be ", getwd(), "\nsource_path  was", source_path, "\noutput_path was ", output_path, "\nAnd function_path was", function_path, "\t\n\nAll of them were renewed to function!!")
+  cat("Working Dir was set to be ", getwd(), "\nsource_path  was", source_path, "\noutput_path was ", output_path)
 } #### function 1 End #####
 
 #'check and create a path.
 #'@param path a path need to be checked.
 
 ## no need to export, cause the useres didn't need this function.
- path_create <- function(path){
+path_create <- function(path){
   if (dir.exists(path) == F) {dir.create(path, showWarnings = F, recursive = T)}
 }
-
-
