@@ -2,7 +2,7 @@
 #' round the data and keep the data with selected length.
 #' zero in the tail will also be keeped.
 #' @param num numeric, vector, num need to be round.
-#' @param digits
+#' @param digits, digits of the data rounded.
 #' @examples
 #' \dontrun{
 #' num <- c(1,3,5.2,-2.3)

@@ -4,12 +4,10 @@
 \alias{Greek_to_Enl}
 \title{Trans Greek letters to English.}
 \usage{
-Greek_to_Enl(input, Greek_to_Enl_df = Greek_to_Enl_df)
+Greek_to_Enl(input)
 }
 \arguments{
-\item{input, }{vector needs to trans into English}
-
-\item{Greek_to_Enl_df, }{dictionary for trans.}
+\item{input, }{vector needs to trans into Englishparam Greek_to_Enl_df, dictionary for trans. depracted}
 }
 \value{
 

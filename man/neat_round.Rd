@@ -10,6 +10,8 @@ neat_round(num, digits = 3)
 }
 \arguments{
 \item{num}{numeric, vector, num need to be round.}
+
+\item{digits, }{digits of the data rounded.}
 }
 \description{
 works like format function.
