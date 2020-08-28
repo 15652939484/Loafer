@@ -23,5 +23,4 @@ Roxygen: list(markdown = TRUE)
 URL: https://github.com/15652939484/Loafer
 BugReports: https://github.com/15652939484/Loafer/issues
 RoxygenNote: 7.1.1
-Depends: 
-    R (>= 3.5.0)
+Depends: R (>= 3.5.0)
