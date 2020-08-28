@@ -11,7 +11,7 @@ get_or_set_dir(
   main_trunk_as_wd = F,
   source_path = "0_data_source/",
   output_path = "2_output/",
-  other_dirs = c(function_path = "DIY Function/"),
+  other_dirs = NULL,
   Change_wd = T
 )
 }
@@ -22,7 +22,7 @@ get_or_set_dir(
 
 \item{output_path, }{character, where the output of an analysis will be saved.}
 
-\item{other_dirs, }{character vector with var name. the name will be assigned and be returned to global env.}
+\item{other_dirs, }{character vector with var name.Can be NULL. the name will be assigned and be returned to global env.}
 
 \item{Change_wd, }{Boolean; Wether set source path as the working dir.}
 }
@@ -47,6 +47,11 @@ get_or_set_dir(main_trunk_as_wd = F,
    source_path = "0_data_source/",
    output_path = "2_output/",
    other_dirs = c(function_path = "DIY Function/", Dir_test = "Test dir"),
+   Change_wd = T)
+get_or_set_dir(main_trunk_as_wd = F,
+   source_path = "0_data_source/",
+   output_path = "2_output/",
+   other_dirs = NULL,
    Change_wd = T)
 }
 }
