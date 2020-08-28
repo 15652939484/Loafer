@@ -8,7 +8,7 @@ a wrap function for cut. To handle the p value transformation.}
 p_to_label(
   input,
   digits = 4,
-  breaks = c(-1e-11, 0.001, 0.01, 0.05, 1.0001),
+  breaks = c(-0.00000000001, 0.001, 0.01, 0.05, 1.0001),
   labels = c("***", "**", "*", ""),
   trans_to_character = T,
   drop_p = T,
