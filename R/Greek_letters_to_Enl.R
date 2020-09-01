@@ -7,7 +7,7 @@
 #' }
 #' @return
 #' @export
-#'
+#' @importFrom reshape2 melt
 
 Greek_to_Enl <- function(input){
   ## trans greek (i character vector) into Enl.
