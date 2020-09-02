@@ -1,7 +1,7 @@
 Package: Loafer
 Title: Store the functions and for more convient uses
 Version: 0.0.0.9000
-Authors@R: 
+Authors@R:
     person(given = "Di",
            family = "Zhou",
            role = c("aut", "cre"),
@@ -9,12 +9,17 @@ Authors@R:
            comment = c(ORCID = "0000-0001-9661-1823"))
 Imports:
     dplyr (>= 0.3.0.1),
+    pacman,
+    gbm,
+    randomForest,
+    glmnet,
+    pROC,
     rstudioapi,
     stringr,
     magrittr,
-    ggplot2    
+    ggplot2
 Enhances:
-    base    
+    base
 Description: Some useful functions for lazyboy like me. And have a exercise for package creating in gayhub.
 License: Artistic-2.0
 Encoding: UTF-8
