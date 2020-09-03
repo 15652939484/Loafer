@@ -8,6 +8,8 @@ building modules by using LR 使用LR进行建模}
 module.Bayes(module_obj, laplace = 0)
 }
 \arguments{
+\item{module_obj}{inheritParams from get_the_auc}
+
 \item{laplace}{param for smooth.}
 }
 \description{

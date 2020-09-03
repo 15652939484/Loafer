@@ -3,6 +3,7 @@
 #' @param pred_num the predicted num of each sample
 #' @param fit_note the note to be used in the filename to seperate the results
 #' @param IS_smooth wether to smooth the ROC lines.
+#' @importFrom pROC roc
 #' @examples
 #' \dontrun{
 #' pred_num <- c(0.9,0.1,0.33,0.87)
@@ -75,7 +76,7 @@ plot_roc_by_pROC <- function(real_I, pred_num,
 #' 同時繪製訓練集和驗證集的ROC曲線
 #' @param module_obj inheritParams from get_the_auc
 #' @importFrom pROC roc
-#' @inheritParams roc IS_smooth
+#' @inheritParams plot_roc_by_pROC IS_smooth
 #' @param Note control the filename in order to change the file names.
 #' @export
 plot_roc_from_module_obj <- function(module_obj, IS_smooth = F, Note = "say sth"){

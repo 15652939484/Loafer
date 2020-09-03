@@ -50,6 +50,7 @@ module.LR.step <- function(module_obj){
 
 #' building modules by using LR 使用LR进行建模
 #' @param module_obj inheritParams from get_the_auc
+#' @importFrom randomForest randomForest
 #' @inheritParams randomForest mtry, nodesize, ntree
 #' @export
 module.RF <- function(module_obj, mtry = 3, nodesize = 5, ntree = 10000){
@@ -89,7 +90,7 @@ module.GB <- function(module_obj){
 
 #' Module with Bayes采用贝叶斯分类器进行计算
 #' building modules by using LR 使用LR进行建模
-#' @inheritParams get_the_auc module_obj
+#' @param module_obj inheritParams from get_the_auc
 #' @param laplace param for smooth.
 #' @export
 module.Bayes <- function(module_obj, laplace = 0){
