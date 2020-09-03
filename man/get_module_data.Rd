@@ -5,7 +5,7 @@
 \title{Get obj for module building:
 check groups # be sure the two set have same groups.
 check variables: use the intersect vars by default.
-clean the var names(remove the blank and other codes)
+clean the var names : remove the blank and other codes
 when the var wasn't started with letters, the head will be added.
 generate formulas}
 \usage{
@@ -25,12 +25,7 @@ a list with data and formula for moduling.
 Get obj for module building:
 check groups # be sure the two set have same groups.
 check variables: use the intersect vars by default.
-clean the var names(remove the blank and other codes)
+clean the var names : remove the blank and other codes
 when the var wasn't started with letters, the head will be added.
 generate formulas
-}
-\examples{
-\dontrun{
-sth wrong happend.
-}
 }
