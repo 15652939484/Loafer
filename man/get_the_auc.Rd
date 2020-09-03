@@ -2,8 +2,7 @@
 % Please edit documentation in R/ROC_02_Build_modules_and_get_AUC.R
 \name{get_the_auc}
 \alias{get_the_auc}
-\title{get the auc of train and test data.
-可以为RF、LR、贝叶斯、弹性网络等模型提供AUC。}
+\title{get the auc of train and test data.}
 \usage{
 get_the_auc(module_obj, method = "normal")
 }

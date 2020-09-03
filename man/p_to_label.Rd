@@ -2,8 +2,7 @@
 % Please edit documentation in R/p_to_label.R
 \name{p_to_label}
 \alias{p_to_label}
-\title{trans p to labels.
-a wrap function for cut. To handle the p value transformation.}
+\title{trans p to labels}
 \usage{
 p_to_label(
   input,

@@ -2,8 +2,7 @@
 % Please edit documentation in R/ROC_03_Get_ROC.R
 \name{plot_roc_from_module_obj}
 \alias{plot_roc_from_module_obj}
-\title{Get roc by module obj via pROC package.
-同時繪製訓練集和驗證集的ROC曲線}
+\title{Get roc by module obj via pROC package.}
 \usage{
 plot_roc_from_module_obj(module_obj, IS_smooth = F, Note = "say sth")
 }
@@ -14,5 +13,7 @@ plot_roc_from_module_obj(module_obj, IS_smooth = F, Note = "say sth")
 }
 \description{
 Get roc by module obj via pROC package.
+}
+\details{
 同時繪製訓練集和驗證集的ROC曲線
 }

@@ -2,8 +2,7 @@
 % Please edit documentation in R/import_MP_datas.R
 \name{import_MP_datas}
 \alias{import_MP_datas}
-\title{Get S4 obj ExperimentData from MP data file directly
-从麦特绘谱的结果文件直接生成S4对象。}
+\title{Get S4 obj ExperimentData from MP data file directly}
 \usage{
 import_MP_datas(
   Allmet_file,
@@ -30,6 +29,11 @@ import_MP_datas(
 返回一个Experiment 的S4对象
 }
 \description{
+Get S4 obj ExperimentData from MP data file directly
+}
+\details{
+从麦特绘谱的结果文件直接生成S4对象。
+
 depracted param Folder_path 若给出文件夹所在的位置。 直接从中解析出需要的数据,感觉用处不大，不够灵活
 param Treat_involved  涉及到的Treats，不够灵活，手动搞定文件吧
 }

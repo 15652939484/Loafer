@@ -1,4 +1,4 @@
-#' Draw the lines by using the real_I and pred_num of the ROC.
+#' @title Draw the lines by using the real_I and pred_num of the ROC.
 #' @param real_I the real group of a each sample in dataset
 #' @param pred_num the predicted num of each sample
 #' @param fit_note the note to be used in the filename to seperate the results
@@ -72,7 +72,8 @@ plot_roc_by_pROC <- function(real_I, pred_num,
 
 
 
-#' Get roc by module obj via pROC package.
+#' @title Get roc by module obj via pROC package.
+#' @details
 #' 同時繪製訓練集和驗證集的ROC曲線
 #' @param module_obj inheritParams from get_the_auc
 #' @importFrom pROC roc

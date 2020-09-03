@@ -2,8 +2,7 @@
 % Please edit documentation in R/ROC_02_Build_modules_and_get_AUC.R
 \name{module.Bayes}
 \alias{module.Bayes}
-\title{Module with Bayes采用贝叶斯分类器进行计算
-building modules by using LR 使用LR进行建模}
+\title{Module with Bayes采用贝叶斯分类器进行计算}
 \usage{
 module.Bayes(module_obj, laplace = 0)
 }
@@ -13,6 +12,5 @@ module.Bayes(module_obj, laplace = 0)
 \item{laplace}{param for smooth.}
 }
 \description{
-Module with Bayes采用贝叶斯分类器进行计算
 building modules by using LR 使用LR进行建模
 }

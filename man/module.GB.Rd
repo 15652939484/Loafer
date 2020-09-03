@@ -2,11 +2,7 @@
 % Please edit documentation in R/ROC_02_Build_modules_and_get_AUC.R
 \name{module.GB}
 \alias{module.GB}
-\title{building models by using gbm from gbm package
-\subsection{暂时有问题用不了}{
-
-export
-}}
+\title{building models by using gbm from gbm package}
 \usage{
 module.GB(module_obj)
 }
@@ -14,9 +10,6 @@ module.GB(module_obj)
 \item{module_obj}{inheritParams from get_the_auc}
 }
 \description{
-building models by using gbm from gbm package
-\subsection{暂时有问题用不了}{
-
-export
+\subsection{当预测分组全部相同时会有问题导致用不了}{
 }
 }

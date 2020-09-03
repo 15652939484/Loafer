@@ -1,4 +1,4 @@
-#' Get obj for module building:
+#' @title Get obj for module building:
 #' @details
 #' check groups # be sure the two set have same groups.
 #' check variables: use the intersect vars by default.
@@ -29,7 +29,7 @@ get_module_data <- function(train_set, test_set, sig_v){
 }
 
 
-#' Turn the ExperimentSet S4 into a data frame
+#' @title Turn the ExperimentSet S4 into a data frame
 #' @param set train_set or test_set, ExperimentSet. process and get the new dat for module.
 #' @return a dataframe with "group" and other var.
 #' @export
@@ -46,8 +46,8 @@ get_ls_for_model <- function(set){
   return(dat)
 }
 
-#' process_Name for module.
-#' 清洗变量名
+#' @title process_Name for module.
+#' @details 清洗变量名
 #' replace and remove sth to ensure the var name can be used correctly in a formular
 #' @param input_name name vector :to be cleaned.
 #' @param var_head the head for variable which wasn't started with letters.
@@ -57,6 +57,7 @@ get_ls_for_model <- function(set){
 #' process_var_Name(input_name = input_name)
 #' }
 #' @export
+#'
 process_var_Name <- function(input_name, var_head = "V"){
   head <- paste0(var_head, "\\1")
   input_name %>% gsub("[-*+ ().,;]","_",.) %>% gsub("(^[^a-zA-Z])",head,.)

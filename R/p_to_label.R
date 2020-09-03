@@ -1,3 +1,5 @@
+#' @title trans p to labels
+#' @description
 #' trans p to labels.
 #' a wrap function for cut. To handle the p value transformation.
 #' @param input numeric vector. p need to be transed.

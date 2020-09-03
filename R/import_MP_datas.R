@@ -1,4 +1,5 @@
-#' Get S4 obj ExperimentData from MP data file directly
+#' @title Get S4 obj ExperimentData from MP data file directly
+#' @details
 #' 从麦特绘谱的结果文件直接生成S4对象。
 #'
 #'

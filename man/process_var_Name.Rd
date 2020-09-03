@@ -2,9 +2,7 @@
 % Please edit documentation in R/ROC_01_Get_module_data.R
 \name{process_var_Name}
 \alias{process_var_Name}
-\title{process_Name for module.
-清洗变量名
-replace and remove sth to ensure the var name can be used correctly in a formular}
+\title{process_Name for module.}
 \usage{
 process_var_Name(input_name, var_head = "V")
 }
@@ -15,6 +13,8 @@ process_var_Name(input_name, var_head = "V")
 }
 \description{
 process_Name for module.
+}
+\details{
 清洗变量名
 replace and remove sth to ensure the var name can be used correctly in a formular
 }

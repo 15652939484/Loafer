@@ -1,9 +1,11 @@
-#' Combine modules.
+#' @title Combine modules.
+#' @description
 #' #' 本页的函数是为了简化实际筛选模型/方法/参数以便获得更好的预测效果所做的尝试
 #' 具体修改的主要有：同时提供训练集和验证集的AUC结果；部分方法会提供必要的参数；尝试了多种不同的方法。
 #' 只要将各个模型的predict值输出就可以接ROC可视化了。
 #' @param module_obj inheritParams from get_the_auc
 #' @export
+#'
 Combine_modules <- function(module_obj){
     ### 有些模型在效果不好（如使用随机数据+随机变量）的时候是可能报错的。
     pulled_df <- NULL
@@ -18,7 +20,7 @@ Combine_modules <- function(module_obj){
     return(pulled_df)
 }
 
-#' building modules by using LR 使用LR进行建模
+#' @title building modules by using LR 使用LR进行建模
 #' @param module_obj inheritParams from get_the_auc
 #' @export
 module.LR <- function(module_obj){
@@ -33,7 +35,7 @@ module.LR <- function(module_obj){
 
 
 
-#' building modules by using LR 使用LR进行建模
+#' @title building modules by using LR 使用LR进行建模
 #' @param module_obj inheritParams from get_the_auc
 #' @export
 module.LR.step <- function(module_obj){
@@ -48,7 +50,7 @@ module.LR.step <- function(module_obj){
 
 
 
-#' building modules by using LR 使用LR进行建模
+#' @title building modules by using LR 使用LR进行建模
 #' @param module_obj inheritParams from get_the_auc
 #' @importFrom randomForest randomForest
 #' @inheritParams randomForest mtry, nodesize, ntree
@@ -65,9 +67,9 @@ module.RF <- function(module_obj, mtry = 3, nodesize = 5, ntree = 10000){
 }
 
 
-#' building models by using gbm from gbm package
-#' ### 暂时有问题用不了
-#' export
+#' @title building models by using gbm from gbm package
+#' @description
+#' ### 当预测分组全部相同时会有问题导致用不了
 #' @importFrom gbm gbm
 #' @param module_obj inheritParams from get_the_auc
 #' @export
@@ -88,7 +90,8 @@ module.GB <- function(module_obj){
     get_the_auc(module_obj)
 }
 
-#' Module with Bayes采用贝叶斯分类器进行计算
+#' @title Module with Bayes采用贝叶斯分类器进行计算
+#' @description
 #' building modules by using LR 使用LR进行建模
 #' @param module_obj inheritParams from get_the_auc
 #' @param laplace param for smooth.
@@ -102,8 +105,8 @@ module.Bayes <- function(module_obj, laplace = 0){
 
 
 
-#' get module by Lasso_or_Ridge使用岭回归进行分类分析。
-#'
+#' @title get module by Lasso_or_Ridge使用岭回归进行分类分析。
+#' @description
 #' 参考资料： https://www.pluralsight.com/guides/linear-lasso-and-ridge-regression-with-r
 #' @param module_obj inheritParams from get_the_auc
 #' @param Lasso_or_Ridge character: Lasso or Ridge to set different methods.
@@ -137,6 +140,8 @@ module.Lasso_or_Ridge <- function(module_obj, Lasso_or_Ridge = "Lasso"){
 }
 
 
+#' @title building modules by using Elastic Net
+#' @description
 #' building modules by using Elastic Net
 #' 使用弹性网络进行建模。模型建模过程中内置了交叉验证：
 #' 这可能降低过拟合使得验证集的结果变好，但是模型在训练集中的表现会变差。
@@ -172,7 +177,9 @@ module.Elastic_Net <- function(module_obj, method = "repeatedcv", cv.repeats = 7
 
 
 # pred_num <- predict(module_obj$fit_train, newdata = module_obj$train)
-#' get the auc of train and test data.
+
+#' @title get the auc of train and test data.
+#' @description get the auc of train and test data.
 #' 可以为RF、LR、贝叶斯、弹性网络等模型提供AUC。
 #' @param module_obj the obj for the moduling.
 #' @param method to call different predict for different method; for some fit need different predict param. such as Bayes et.al.
@@ -228,6 +235,8 @@ get_the_auc <- function(module_obj, method = "normal"){
 }
 
 
+#' @title building modules by using LR
+#' @description
 #' building modules by using LR 使用LR进行建模
 #' 为Lasso 和 Ridge 模型提供AUC
 #' @param module_obj inheritParams from get_the_auc

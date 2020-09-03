@@ -2,8 +2,7 @@
 % Please edit documentation in R/ROC_02_Build_modules_and_get_AUC.R
 \name{get_the_auc.Lasso_and_Ridge}
 \alias{get_the_auc.Lasso_and_Ridge}
-\title{building modules by using LR 使用LR进行建模
-为Lasso 和 Ridge 模型提供AUC}
+\title{building modules by using LR}
 \usage{
 get_the_auc.Lasso_and_Ridge(module_obj)
 }

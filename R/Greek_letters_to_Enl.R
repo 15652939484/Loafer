@@ -1,4 +1,4 @@
-#' Trans Greek letters to English.
+#' @title Trans Greek letters to English.
 #' @description
 #' the param Greek_to_Enl_df, dictionary for trans. depracted
 #' @param input ,vector needs to trans into English
