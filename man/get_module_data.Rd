@@ -29,14 +29,3 @@ clean the var names(remove the blank and other codes)
 when the var wasn't started with letters, the head will be added.
 generate formulas
 }
-\examples{
-\dontrun{
-train_set = ExpressionSet_train ##
-test_set  = ExpressionSet_test
-sig_v = c("L_Aspartic acid", "L_Serine","9987","_ddd dkkj")
-get_module_data(train_set = ExpressionSet_train,
-                test_set = ExpressionSet_test,
-                sig_v = c("L_Aspartic acid", "L_Serine","9987","_ddd dkkj"))
-
-}
-}

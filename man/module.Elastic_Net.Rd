@@ -4,7 +4,10 @@
 \alias{module.Elastic_Net}
 \title{building modules by using LR 使用LR进行建模}
 \usage{
-module.Elastic_Net(module_obj)
+module.Elastic_Net(module_obj, method = "repeatedcv", cv.repeats = 7)
+}
+\arguments{
+\item{method}{resampling method}
 }
 \description{
 building modules by using LR 使用LR进行建模
