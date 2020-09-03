@@ -14,6 +14,8 @@ Imports:
     reshape2,
     randomForest,
     glmnet,
+    caret,
+    e1071,
     pROC,
     rstudioapi,
     stringr,
