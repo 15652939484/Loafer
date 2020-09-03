@@ -1,13 +1,16 @@
 #' Trans Greek letters to English.
-#' @param input, vector needs to trans into English
-#' # param Greek_to_Enl_df, dictionary for trans. depracted
+#' @description
+#' the param Greek_to_Enl_df, dictionary for trans. depracted
+#' @param input ,vector needs to trans into English
+#'
+#' @importFrom reshape2 melt
+#'
 #' @examples
 #' \dontrun{
 #'  Greek_to_Enl(input = c("Γ", "Δ", "δ"), Greek_to_Enl_df = Greek_to_Enl_df)
 #' }
 #' @return
 #' @export
-#' @importFrom reshape2 melt
 
 Greek_to_Enl <- function(input){
   ## trans greek (i character vector) into Enl.

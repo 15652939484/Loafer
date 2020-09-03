@@ -7,13 +7,13 @@
 Greek_to_Enl(input)
 }
 \arguments{
-\item{input, }{vector needs to trans into Englishparam Greek_to_Enl_df, dictionary for trans. depracted}
+\item{input}{,vector needs to trans into English}
 }
 \value{
 
 }
 \description{
-Trans Greek letters to English.
+the param Greek_to_Enl_df, dictionary for trans. depracted
 }
 \examples{
 \dontrun{

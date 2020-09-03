@@ -2,12 +2,7 @@
 % Please edit documentation in R/ROC_01_Get_module_data.R
 \name{get_module_data}
 \alias{get_module_data}
-\title{Get obj for module building:
-check groups # be sure the two set have same groups.
-check variables: use the intersect vars by default.
-clean the var names : remove the blank and other codes
-when the var wasn't started with letters, the head will be added.
-generate formulas}
+\title{Get obj for module building:}
 \usage{
 get_module_data(train_set, test_set, sig_v)
 }
@@ -19,10 +14,12 @@ get_module_data(train_set, test_set, sig_v)
 \item{sig_v}{sig variables, character vector.}
 }
 \value{
-a list with data and formula for moduling.
+module_data a list with data and formula for moduling.
 }
 \description{
 Get obj for module building:
+}
+\details{
 check groups # be sure the two set have same groups.
 check variables: use the intersect vars by default.
 clean the var names : remove the blank and other codes
