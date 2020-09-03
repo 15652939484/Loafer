@@ -9,6 +9,9 @@
 \usage{
 Combine_modules(module_obj)
 }
+\arguments{
+\item{module_obj}{inheritParams from get_the_auc}
+}
 \description{
 Combine modules.
 #' 本页的函数是为了简化实际筛选模型/方法/参数以便获得更好的预测效果所做的尝试

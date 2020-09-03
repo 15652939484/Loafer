@@ -10,6 +10,9 @@ export
 \usage{
 module.GB(module_obj)
 }
+\arguments{
+\item{module_obj}{inheritParams from get_the_auc}
+}
 \description{
 building models by using gbm from gbm package
 \subsection{暂时有问题用不了}{

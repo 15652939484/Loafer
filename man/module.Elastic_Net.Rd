@@ -2,13 +2,21 @@
 % Please edit documentation in R/ROC_02_Build_modules_and_get_AUC.R
 \name{module.Elastic_Net}
 \alias{module.Elastic_Net}
-\title{building modules by using LR 使用LR进行建模}
+\title{building modules by using Elastic Net
+使用弹性网络进行建模。模型建模过程中内置了交叉验证：
+这可能降低过拟合使得验证集的结果变好，但是模型在训练集中的表现会变差。}
 \usage{
 module.Elastic_Net(module_obj, method = "repeatedcv", cv.repeats = 7)
 }
 \arguments{
+\item{module_obj}{inheritParams from get_the_auc}
+
 \item{method}{resampling method}
+
+\item{cv.repeats}{folds for cv.}
 }
 \description{
-building modules by using LR 使用LR进行建模
+building modules by using Elastic Net
+使用弹性网络进行建模。模型建模过程中内置了交叉验证：
+这可能降低过拟合使得验证集的结果变好，但是模型在训练集中的表现会变差。
 }

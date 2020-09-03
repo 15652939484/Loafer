@@ -7,6 +7,9 @@
 \usage{
 get_the_auc.Lasso_and_Ridge(module_obj)
 }
+\arguments{
+\item{module_obj}{inheritParams from get_the_auc}
+}
 \description{
 building modules by using LR 使用LR进行建模
 为Lasso 和 Ridge 模型提供AUC

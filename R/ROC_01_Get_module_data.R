@@ -38,6 +38,21 @@
 #' new_module_obj <- module.LR.step(module_obj)
 #' res_by_LR.step <- module.LR.step(module_obj) %>% `[[`(., "res_df)
 #' res_by_LR.step
+#' ## We can plot each ROC manually
+#' plot_roc_by_pROC(real_I = module_obj$for_plot$train$real_I,
+#'                  pred_num = module_obj$for_plot$train$pred_num,
+#'                  fit_note = module_obj$method_note %>% paste("train data Manual ROC",.),
+#' IS_smooth = F)
+#'
+#' plot_roc_by_pROC(real_I = module_obj$for_plot$test$real_I,
+#'               pred_num = module_obj$for_plot$test$pred_num,
+#'               fit_note = module_obj$method_note %>% paste("test data Manual ROC",.),
+#'               IS_smooth = F)
+## Or we can use the intergerted function to get the module ROC for test or train data.
+#' plot_roc_from_module_obj(module_obj, Note = "my module")
+#'
+#'
+#'
 #' }
 #' @return a list with data and formula for moduling.
 #' @export

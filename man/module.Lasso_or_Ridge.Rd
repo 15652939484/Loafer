@@ -7,6 +7,8 @@
 module.Lasso_or_Ridge(module_obj, Lasso_or_Ridge = "Lasso")
 }
 \arguments{
+\item{module_obj}{inheritParams from get_the_auc}
+
 \item{Lasso_or_Ridge}{character: Lasso or Ridge to set different methods.}
 }
 \description{

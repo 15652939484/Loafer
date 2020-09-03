@@ -6,6 +6,9 @@
 \usage{
 module.LR(module_obj)
 }
+\arguments{
+\item{module_obj}{inheritParams from get_the_auc}
+}
 \description{
 building modules by using LR 使用LR进行建模
 }
