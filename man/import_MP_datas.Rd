@@ -33,7 +33,6 @@ Get S4 obj ExperimentData from MP data file directly
 }
 \details{
 从麦特绘谱的结果文件直接生成S4对象。
-
 depracted param Folder_path 若给出文件夹所在的位置。 直接从中解析出需要的数据,感觉用处不大，不够灵活
 param Treat_involved  涉及到的Treats，不够灵活，手动搞定文件吧
 }

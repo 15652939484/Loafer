@@ -10,6 +10,9 @@ Combine_modules(module_obj)
 \item{module_obj}{inheritParams from get_the_auc}
 }
 \description{
+Combine modules.
+}
+\details{
 #' 本页的函数是为了简化实际筛选模型/方法/参数以便获得更好的预测效果所做的尝试
 具体修改的主要有：同时提供训练集和验证集的AUC结果；部分方法会提供必要的参数；尝试了多种不同的方法。
 只要将各个模型的predict值输出就可以接ROC可视化了。

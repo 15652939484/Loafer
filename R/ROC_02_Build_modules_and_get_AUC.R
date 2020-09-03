@@ -1,11 +1,11 @@
 #' @title Combine modules.
-#' @description
+#' @details
 #' #' 本页的函数是为了简化实际筛选模型/方法/参数以便获得更好的预测效果所做的尝试
 #' 具体修改的主要有：同时提供训练集和验证集的AUC结果；部分方法会提供必要的参数；尝试了多种不同的方法。
 #' 只要将各个模型的predict值输出就可以接ROC可视化了。
 #' @param module_obj inheritParams from get_the_auc
 #' @export
-#'
+
 Combine_modules <- function(module_obj){
     ### 有些模型在效果不好（如使用随机数据+随机变量）的时候是可能报错的。
     pulled_df <- NULL
@@ -241,6 +241,7 @@ get_the_auc <- function(module_obj, method = "normal"){
 #' 为Lasso 和 Ridge 模型提供AUC
 #' @param module_obj inheritParams from get_the_auc
 #' @export
+
 #  使用逐步回归进行分析建模。
 get_the_auc.Lasso_and_Ridge <- function(module_obj){
     ### get the result.
@@ -278,4 +279,3 @@ get_the_auc.Lasso_and_Ridge <- function(module_obj){
                                     check = AUC.test > 0.7 & AUC.train < 1)
     return(module_obj)
 }
-

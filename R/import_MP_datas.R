@@ -1,8 +1,6 @@
 #' @title Get S4 obj ExperimentData from MP data file directly
 #' @details
 #' 从麦特绘谱的结果文件直接生成S4对象。
-#'
-#'
 #' depracted param Folder_path 若给出文件夹所在的位置。 直接从中解析出需要的数据,感觉用处不大，不够灵活
 #'           param Treat_involved  涉及到的Treats，不够灵活，手动搞定文件吧
 #' @param Allmet_file # allmet data file name
@@ -12,7 +10,6 @@
 #' @param ClassNote_involved_c charactor vector, select groups need to be imports
 #' @param remove_QC charactor vector, remove the QC if necessary.
 #' @return 返回一个Experiment 的S4对象
-#' @importFrom Biobase ExpressionSet
 #' @examples
 #' \dontrun{
 #' ## 搞几个数据文件。放在工作目录中，然后执行下述代码：
@@ -29,7 +26,7 @@
 
 # library(Loafer)
 # get_or_set_dir()
-## From Folder
+# From Folder
 
 # ExpressionSet <-  import_MP_datas(Allmet_file = "04_AllMet 训练集.csv",
 #     group_info_file = "Class_Info 训练集.csv",
