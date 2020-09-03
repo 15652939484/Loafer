@@ -29,3 +29,8 @@ clean the var names(remove the blank and other codes)
 when the var wasn't started with letters, the head will be added.
 generate formulas
 }
+\examples{
+\dontrun{
+sth wrong happend.
+}
+}

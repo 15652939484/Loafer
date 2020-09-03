@@ -8,7 +8,6 @@
 #' @param drop_p logical, indicating wether to drop p or show p in the return.
 #' @param include_right_bound logical, default F, indicating if the intervals should be closed
 #'     on the right (and open on the left) or vice versa.
-#' @param
 #' @examples
 #' \dontrun{
 #'p_c <- c(0.001, 0.03, 0.05, 0.00001)

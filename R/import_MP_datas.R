@@ -11,7 +11,7 @@
 #' @param ClassNote_involved_c charactor vector, select groups need to be imports
 #' @param remove_QC charactor vector, remove the QC if necessary.
 #' @return 返回一个Experiment 的S4对象
-#' @importfrom Biobase ExpressionSet
+#' @importFrom Biobase ExpressionSet
 #' @examples
 #' \dontrun{
 #' ## 搞几个数据文件。放在工作目录中，然后执行下述代码：
