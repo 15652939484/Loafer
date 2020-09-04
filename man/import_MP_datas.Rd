@@ -2,7 +2,7 @@
 % Please edit documentation in R/import_MP_datas.R
 \name{import_MP_datas}
 \alias{import_MP_datas}
-\title{Get S4 obj ExperimentData from MP data file directly}
+\title{Get S4 obj ExperimentData from MP data file directly.}
 \usage{
 import_MP_datas(
   Allmet_file,
@@ -29,7 +29,7 @@ import_MP_datas(
 返回一个Experiment 的S4对象
 }
 \description{
-Get S4 obj ExperimentData from MP data file directly
+Get S4 obj ExperimentData from MP data file directly.
 }
 \details{
 从麦特绘谱的结果文件直接生成S4对象。
@@ -38,7 +38,7 @@ param Treat_involved  涉及到的Treats，不够灵活，手动搞定文件吧
 }
 \examples{
 \dontrun{
-## 鎼炲嚑涓暟鎹枃浠躲€傛斁鍦ㄥ伐浣滅洰褰曚腑锛岀劧鍚庢墽琛屼笅杩颁唬鐮侊細
+"鎼炲嚑涓暟鎹枃浠躲€傛斁鍦ㄥ伐浣滅洰褰曚腑锛岀劧鍚庢墽琛屼笅杩颁唬鐮侊細"
 getwd()
 import_MP_datas(Allmet_file = "04_AllMet 璁粌闆<86>.csv",
     group_info_file = "Class_Info 璁粌闆<86>.csv",

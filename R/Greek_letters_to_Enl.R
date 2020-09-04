@@ -13,7 +13,7 @@
 #' @export
 
 Greek_to_Enl <- function(input){
-  ## trans greek (i character vector) into Enl.
+  # trans greek (i character vector) into Enl.
   # dictionary <- Loafer:::Greek_to_Enl_df %>% melt(., "pinyin")
   dictionary <- Greek_to_Enl_df %>% melt(., "pinyin") ## quote the data name directly can be enough.
   matched <- input %in% dictionary$value

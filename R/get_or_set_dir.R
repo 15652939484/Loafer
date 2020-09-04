@@ -1,5 +1,6 @@
-#' get or set the dir by Rstudio
-#' Get the dir where the script were lying in.
+#' @tile get or set the dir by Rstudio
+#' @details
+#'     Get the dir where the script were lying in.
 #'     Set the dir as main_path and create some sub file folder inside the dir.
 #'     Chose one file as the new working dir.
 #'@param main_trunk_as_wd, Boolean, IF T, the main dir will be set as new wd.

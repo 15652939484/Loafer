@@ -1,4 +1,4 @@
-#' get colors and breaks for plot(usually for continue var in heatmap)
+#' @title get colors and breaks for plot(usually for continue var in heatmap)
 #' @param max the top end of the data to be mapped.
 #' @param min the below end of the data to be mapped.
 #' @param breaks the breaks for diff colors.
@@ -17,10 +17,10 @@
 #' @return a list with two sub vector
 #' @return result$my_color the colors vector.
 #' @return result$my_breaks the breaks vector.
-#'
+#' @importFrom grDevices colorRampPalette
 #' @export
 
-#' @importFrom grDevices colorRampPalette
+
 get_colors <- function(max = 3,min = -3,
                        breaks = 0.05,
                        print_notes = F,

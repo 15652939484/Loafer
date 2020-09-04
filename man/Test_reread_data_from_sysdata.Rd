@@ -2,8 +2,7 @@
 % Please edit documentation in R/Test load data from sysdata.R
 \name{Test_reread_data_from_sysdata}
 \alias{Test_reread_data_from_sysdata}
-\title{Test_reread_data_from_sysdata
-Test to read the data by packagename:::dataname in R/sysdata.rda.  ##}
+\title{Test_reread_data_from_sysdata}
 \usage{
 Test_reread_data_from_sysdata()
 }
@@ -12,6 +11,8 @@ re
 }
 \description{
 Test_reread_data_from_sysdata
+}
+\details{
 Test to read the data by packagename:::dataname in R/sysdata.rda.  ##
 }
 \examples{

@@ -2,9 +2,7 @@
 % Please edit documentation in R/Neat_Round.R
 \name{neat_round}
 \alias{neat_round}
-\title{works like format function.
-round the data and keep the data with selected length.
-zero in the tail will also be keeped.}
+\title{works like format function.}
 \usage{
 neat_round(num, digits = 3)
 }
@@ -15,6 +13,8 @@ neat_round(num, digits = 3)
 }
 \description{
 works like format function.
+}
+\details{
 round the data and keep the data with selected length.
 zero in the tail will also be keeped.
 }

@@ -2,21 +2,22 @@
 % Please edit documentation in R/get_counter.R
 \name{get_a_counter}
 \alias{get_a_counter}
-\title{get a counter for count sth.
-provide a function factory. counter can be generate by this function.
-each time the counter function was called. the counter will add by one automatically.
-the param # NULL no para was needed}
+\title{get a counter for count sth.}
 \usage{
 get_a_counter()
 }
 \description{
 get a counter for count sth.
+}
+\details{
 provide a function factory. counter can be generate by this function.
-each time the counter function was called. the counter will add by one automatically.
+each time the counter function was called. the counter will add by one
+automatically.
 the param # NULL no para was needed
 }
 \examples{
-counter_one <- get_a_counter()
+\dontrun{counter_one <- get_a_counter()
 counter_one()
 counter_one()
+}
 }

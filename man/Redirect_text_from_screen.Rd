@@ -2,8 +2,7 @@
 % Please edit documentation in R/Get_text_from_screen.R
 \name{Redirect_text_from_screen}
 \alias{Redirect_text_from_screen}
-\title{redirect some obj(such as some model summary, which can be assigned directly.)
-this function redirect the text into a temp file and reread it.}
+\title{redirect some obj}
 \usage{
 Redirect_text_from_screen(my_message)
 }
@@ -15,7 +14,7 @@ and can't be assigned to other variables directly.}
 text by line. trans imformation into text and can be value assigned to other vars.
 }
 \description{
-redirect some obj(such as some model summary, which can be assigned directly.)
+(such as some model summary, which can be assigned directly.)
 this function redirect the text into a temp file and reread it.
 }
 \examples{

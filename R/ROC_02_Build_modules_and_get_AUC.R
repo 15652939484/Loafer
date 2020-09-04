@@ -1,11 +1,13 @@
-#' @title Combine modules.
+#' @title
+#' Combine modules.
+#'
 #' @details
 #' #' 本页的函数是为了简化实际筛选模型/方法/参数以便获得更好的预测效果所做的尝试
 #' 具体修改的主要有：同时提供训练集和验证集的AUC结果；部分方法会提供必要的参数；尝试了多种不同的方法。
 #' 只要将各个模型的predict值输出就可以接ROC可视化了。
 #' @param module_obj inheritParams from get_the_auc
+#'
 #' @export
-
 Combine_modules <- function(module_obj){
     ### 有些模型在效果不好（如使用随机数据+随机变量）的时候是可能报错的。
     pulled_df <- NULL
@@ -21,8 +23,11 @@ Combine_modules <- function(module_obj){
 }
 
 #' @title building modules by using LR 使用LR进行建模
+#'
 #' @param module_obj inheritParams from get_the_auc
+#'
 #' @export
+
 module.LR <- function(module_obj){
     set.seed(1234)
     ### get the module.
@@ -36,7 +41,9 @@ module.LR <- function(module_obj){
 
 
 #' @title building modules by using LR 使用LR进行建模
+#'
 #' @param module_obj inheritParams from get_the_auc
+#'
 #' @export
 module.LR.step <- function(module_obj){
     set.seed(1234)

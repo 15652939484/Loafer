@@ -1,4 +1,6 @@
-#' @title Get S4 obj ExperimentData from MP data file directly
+#' @title
+#' Get S4 obj ExperimentData from MP data file directly.
+#'
 #' @details
 #' 从麦特绘谱的结果文件直接生成S4对象。
 #' depracted param Folder_path 若给出文件夹所在的位置。 直接从中解析出需要的数据,感觉用处不大，不够灵活
@@ -12,7 +14,7 @@
 #' @return 返回一个Experiment 的S4对象
 #' @examples
 #' \dontrun{
-#' ## 搞几个数据文件。放在工作目录中，然后执行下述代码：
+#' "搞几个数据文件。放在工作目录中，然后执行下述代码："
 #' getwd()
 #' import_MP_datas(Allmet_file = "04_AllMet 训练集.csv",
 #'     group_info_file = "Class_Info 训练集.csv",

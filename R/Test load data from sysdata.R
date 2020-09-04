@@ -1,5 +1,5 @@
-#' Test_reread_data_from_sysdata
-#' Test to read the data by packagename:::dataname in R/sysdata.rda.  ##
+#' @title Test_reread_data_from_sysdata
+#' @details Test to read the data by packagename:::dataname in R/sysdata.rda.  ##
 #' @examples
 #' \dontrun{
 #' the_Greek_to_Enl_df <- Test_reread_data_from_sysdata()

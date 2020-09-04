@@ -1,5 +1,6 @@
-#'redirect some obj(such as some model summary, which can be assigned directly.)
-#'this function redirect the text into a temp file and reread it.
+#' @title redirect some obj
+#' @description (such as some model summary, which can be assigned directly.)
+#'   this function redirect the text into a temp file and reread it.
 #'@param  my_message, obj print in the screen
 #' and can't be assigned to other variables directly.
 #'@examples

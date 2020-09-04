@@ -1,5 +1,5 @@
-#' works like format function.
-#' round the data and keep the data with selected length.
+#' @title works like format function.
+#' @details  round the data and keep the data with selected length.
 #' zero in the tail will also be keeped.
 #' @param num numeric, vector, num need to be round.
 #' @param digits, digits of the data rounded.

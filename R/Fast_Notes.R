@@ -1,4 +1,4 @@
-#'Create beautiful notes conviently
+#'@title Create beautiful notes conviently
 #'@param word_vector character vector. Words to be shown in the notes.
 #'@examples
 #'fast_notes(c("This is a demo for note","Type your own notes here"))
