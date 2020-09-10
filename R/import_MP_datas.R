@@ -48,7 +48,6 @@
 # ClassNote_involved_c <- c("Control","PD")
 # samples <- phenoData$ClassNote %in% ClassNote_involved_c %>% rownames(phenoData)[.]
 
-
 import_MP_datas <-  function(Allmet_file, group_info_file, obj_note,
                              remove_QC = c("QC","qc","Qc"),
                              ClassNote_involved_c = phenoData$ClassNote %>% unique()){
@@ -83,8 +82,3 @@ import_MP_datas <-  function(Allmet_file, group_info_file, obj_note,
                                                            title = obj_note))
     return(ExpressionSet)
 }
-
-
-# get_or_set_dir()
-# use_data(ExpressionSet_train, internal = F, overwrite = F)
-# load("ExpressionSet_train.rda")

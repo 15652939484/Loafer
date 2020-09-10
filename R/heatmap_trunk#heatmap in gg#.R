@@ -15,10 +15,13 @@
 #' @param color.key.height unit cm. 图例的高
 #' @param color.key.width  unit cm. 图例的宽
 #' @param axis.y.position left or right. right as default. Position for the axis.text.y 调整坐标轴标题的位置。
+#' @param plot.margin margin of plot. unit = "cm".
 #' @param tile.colors colors v tiles fill in heatmap trunk. 注意调整此数据，要让平衡点的颜色是白色等分界色。
 #' @param tile.size size of a tile, numeric, 0 ~ 1.
 #' @param tile.border.col color breaks for tiles in heatmap trunk. 改变格子边界的颜色
 #' @param tile.border.size size of a tile border.
+#' @param expansion.x .5 or c(.5,.6) control the expansion of the x axis.
+#' @param expansion.y .5 or c(.5,.6) control the expansion of the x axis.
 #' @examples
 #' \dontrun{
 #' data("iris")
@@ -39,7 +42,7 @@
 #' ExpressionSet@featureData@data
 #' ExpressionSet@protocolData@data
 #'
-#' heatmap_ls <- ggheatmap(
+#' heatmap_ls <- heatmap_trunk(
 #'     ExpreessionSet_input = ExpressionSet,
 #'     # dat = iris[1:20,1:4] ,
 #'     # label_df = iris[1:20,1:4] %>% round(., 2),
@@ -68,7 +71,7 @@
 #' @return return a pic plot (ggplot2.)
 #' @export
 
-ggheatmap <- function(ExpreessionSet_input = NULL,
+heatmap_trunk <- function(ExpreessionSet_input = NULL,
                       dat = iris[1:20,1:4], label_df = iris[1:20,1:4] %>% round(., 2),
                       Z_by_row_or_col = "row",
                       axis.y.position = "right",
@@ -79,9 +82,12 @@ ggheatmap <- function(ExpreessionSet_input = NULL,
                       label.color.bg = "firebrick" , ## label 轮廓的颜色。
                       color.key.height = 5,
                       color.key.width  = 1,
+                      plot.margin = c(1,1,1,1), # unit "cm"
                       tile.border.col = "black" , ### color for tile border
                       tile.colors = c("black","blue","white","orange","red"),
                       tile.size = .7,
+                      expansion.x = .5,
+                      expansion.y = .5,
                       tile.border.size = 2){
 
   heatmap_ls <- list()
@@ -125,10 +131,14 @@ ggheatmap <- function(ExpreessionSet_input = NULL,
     ## 调整图例尺寸
     guides(fill = guide_colourbar(barheight = unit(color.key.height, "cm"),
                                   barwidth = unit(color.key.width,"cm")))+
+    # scale_x_discrete(expand = expansion(add = expansion.x))+ ## 调整坐标轴位置。应该和纵向的图保持一致
+    # scale_y_discrete(position = axis.y.position, expand = expansion(add = expansion.y))+ ## 调整坐标轴位置。
+    # scale_x_discrete(expand = expansion(add = expansion.x))+ ## 调整坐标轴位置。应该和纵向的图保持一致
     scale_y_discrete(position = axis.y.position)+ ## 调整坐标轴位置。
     theme(panel.grid.major=element_blank()
           ,panel.grid.minor=element_blank()
           ,panel.border = element_blank()
+          ,plot.margin = unit(plot.margin, "cm") ### 调整四周与其他图片的间距
           ,legend.title = element_text(size = axis.text.size * 1.3)
           ,legend.text = element_text(size = axis.text.size * 1.1)
           ,legend.position = "right" ## 调整图例位置.
@@ -187,7 +197,7 @@ if(F){
   ExpressionSet@featureData@data
   ExpressionSet@protocolData@data
 
-  heatmap_ls <- ggheatmap(
+  heatmap_ls <- heatmap_trunk(
     ExpreessionSet_input = ExpressionSet,
     # dat = iris[1:20,1:4] ,
     # label_df = iris[1:20,1:4] %>% round(., 2),
