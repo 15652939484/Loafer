@@ -43,7 +43,8 @@ module.LR <- function(module_obj){
 #' @title building modules by using LR 使用LR进行建模
 #'
 #' @param module_obj inheritParams from get_the_auc
-#'
+#' @details
+#' mtry nodesize ntree were inherited from randomForest::randomForest.
 #' @export
 module.LR.step <- function(module_obj){
     set.seed(1234)
@@ -55,12 +56,10 @@ module.LR.step <- function(module_obj){
     get_the_auc(module_obj)
 }
 
-
-
 #' @title building modules by using LR 使用LR进行建模
 #' @param module_obj inheritParams from get_the_auc
 #' @importFrom randomForest randomForest
-#' @inheritParams randomForest mtry, nodesize, ntree
+#' @inheritParams randomForest::randomForest
 #' @export
 module.RF <- function(module_obj, mtry = 3, nodesize = 5, ntree = 10000){
     ### get the module.

@@ -5,7 +5,7 @@
 #' 从麦特绘谱的结果文件直接生成S4对象。
 #' depracted param Folder_path 若给出文件夹所在的位置。 直接从中解析出需要的数据,感觉用处不大，不够灵活
 #'           param Treat_involved  涉及到的Treats，不够灵活，手动搞定文件吧
-#' @param Allmet_file # allmet data file name
+#' @param Allmet_file allmet data file name
 #' @param group_info_file group info file name
 #' @param groups_involved_c groups involved in the analysis.
 #' @param obj_note note for the obj

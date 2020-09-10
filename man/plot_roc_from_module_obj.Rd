@@ -9,6 +9,8 @@ plot_roc_from_module_obj(module_obj, IS_smooth = F, Note = "say sth")
 \arguments{
 \item{module_obj}{inheritParams from get_the_auc}
 
+\item{IS_smooth}{wether to smooth the ROC lines.}
+
 \item{Note}{control the filename in order to change the file names.}
 }
 \description{

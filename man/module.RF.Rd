@@ -8,6 +8,20 @@ module.RF(module_obj, mtry = 3, nodesize = 5, ntree = 10000)
 }
 \arguments{
 \item{module_obj}{inheritParams from get_the_auc}
+
+\item{mtry}{Number of variables randomly sampled as candidates at each
+    split.  Note that the default values are different for
+    classification (sqrt(p) where p is number of variables in \code{x})
+    and regression (p/3)}
+
+\item{nodesize}{Minimum size of terminal nodes.  Setting this number
+    larger causes smaller trees to be grown (and thus take less time).
+    Note that the default values are different for classification (1)
+    and regression (5).}
+
+\item{ntree}{Number of trees to grow.  This should not be set to too
+    small a number, to ensure that every input row gets predicted at
+    least a few times. }
 }
 \description{
 building modules by using LR 使用LR进行建模

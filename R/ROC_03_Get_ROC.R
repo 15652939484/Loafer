@@ -1,4 +1,6 @@
 #' @title Draw the lines by using the real_I and pred_num of the ROC.
+#' ## 头文档和函数之间仅可以放注释，不可以添加其他代码，哪怕是if(F)也不行，
+#' 会妨碍函数名的获取导致文档问题。
 #' @param real_I the real group of a each sample in dataset
 #' @param pred_num the predicted num of each sample
 #' @param fit_note the note to be used in the filename to seperate the results
@@ -77,7 +79,7 @@ plot_roc_by_pROC <- function(real_I, pred_num,
 #' 同時繪製訓練集和驗證集的ROC曲線
 #' @param module_obj inheritParams from get_the_auc
 #' @importFrom pROC roc
-#' @inheritParams plot_roc_by_pROC IS_smooth
+#' @inheritParams plot_roc_by_pROC
 #' @param Note control the filename in order to change the file names.
 #' @export
 plot_roc_from_module_obj <- function(module_obj, IS_smooth = F, Note = "say sth"){

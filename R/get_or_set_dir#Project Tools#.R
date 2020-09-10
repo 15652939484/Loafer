@@ -1,4 +1,4 @@
-#' @tile get or set the dir by Rstudio
+#' @title  get or set the dir by Rstudio
 #' @details
 #'     Get the dir where the script were lying in.
 #'     Set the dir as main_path and create some sub file folder inside the dir.

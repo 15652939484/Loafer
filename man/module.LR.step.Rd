@@ -12,3 +12,6 @@ module.LR.step(module_obj)
 \description{
 building modules by using LR 使用LR进行建模
 }
+\details{
+mtry nodesize ntree were inherited from randomForest::randomForest.
+}

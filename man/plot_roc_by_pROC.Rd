@@ -2,7 +2,11 @@
 % Please edit documentation in R/ROC_03_Get_ROC.R
 \name{plot_roc_by_pROC}
 \alias{plot_roc_by_pROC}
-\title{Draw the lines by using the real_I and pred_num of the ROC.}
+\title{Draw the lines by using the real_I and pred_num of the ROC.
+\subsection{头文档和函数之间仅可以放注释，不可以添加其他代码，哪怕是if(F)也不行，}{
+
+会妨碍函数名的获取导致文档问题。
+}}
 \usage{
 plot_roc_by_pROC(real_I, pred_num, fit_note = "ROC plot", IS_smooth = F)
 }
@@ -17,6 +21,10 @@ plot_roc_by_pROC(real_I, pred_num, fit_note = "ROC plot", IS_smooth = F)
 }
 \description{
 Draw the lines by using the real_I and pred_num of the ROC.
+\subsection{头文档和函数之间仅可以放注释，不可以添加其他代码，哪怕是if(F)也不行，}{
+
+会妨碍函数名的获取导致文档问题。
+}
 }
 \examples{
 \dontrun{
