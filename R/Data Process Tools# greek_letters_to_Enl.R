@@ -11,7 +11,6 @@
 #' }
 #' @return
 #' @export
-
 Greek_to_Enl <- function(input){
   # trans greek (i character vector) into Enl.
   # dictionary <- Loafer:::Greek_to_Enl_df %>% melt(., "pinyin")
