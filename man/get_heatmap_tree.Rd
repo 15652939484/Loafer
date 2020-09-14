@@ -14,6 +14,9 @@ get_heatmap_tree(
   heighted_v = c("Petal.Length", "Petal.Width"),
   tip.shape = 21,
   tip.size = 8,
+  show_labels = F,
+  axis.text.size = 20,
+  plot.margin = c(1, 1, 1, 1),
   colors_c_readonly = colors(distinct = T) \%>\% .[c(6, 325, 3, 400, 5, 7, 29, 38, 356,
     129, 76, 293, 156)]
 )
@@ -30,6 +33,13 @@ get_heatmap_tree(
 \item{tip.shape}{the shape of the nodes}
 
 \item{tip.size}{the size of the nodes}
+
+\item{show_labels}{logical. If True, the labels will be showned. which can be helpful for user to
+varify the sub plots.}
+
+\item{axis.text.size}{base size of text}
+
+\item{plot.margin}{plot.margin}
 
 \item{colors_c_readonly}{the colors for mapping.#'}
 

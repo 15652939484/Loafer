@@ -5,7 +5,7 @@
 \title{get label plots}
 \usage{
 get_label_tiles(
-  ExpreessionSet_input = ExpressionSet,
+  ExpressionSet_input = ExpressionSet,
   heatmap_ls = heatmap_ls,
   color_ls = list(Species = c(setosa = "pink", versicolor = "black"), NewClass = c(New
     = "red", Old = "cyan"), variable = c(Sepal.Length = "green", Sepal.Width = "yellow",
@@ -13,7 +13,10 @@ get_label_tiles(
   tile.size.top.height = 0.87,
   tile.size.top.width = 0.5,
   tile.size.left.height = 0.5,
+  axis.text.size = 20,
+  plot.margin = c(1, 1, 1, 1),
   tile.size.left.width = 0.97,
+  show_labels = F,
   expansion.top.y = 0.1,
   expansion.left.x = 0.05
 )
@@ -29,14 +32,32 @@ get_label_tiles(
 
 \item{tile.size.left.height}{tile height for left label.}
 
+\item{axis.text.size}{base size of text}
+
+\item{plot.margin}{plot.margin}
+
 \item{tile.size.left.width}{tile width for top label.}
+
+\item{show_labels}{logical. IF true: show the labels. Users can valide the plot convenience.}
 
 \item{expansion.top.y}{unit = "cm". expansion for}
 
-\item{expansion.left.x}{unit = "cm"
+\item{expansion.left.x}{unit = "cm"}
+}
+\description{
+get label plots
+}
+\details{
+输入  ExpressionSet对象。
+根据其中的表型数据和特征数据进行绘图。
+输入颜色。 输出一个label用的图。
+多列的注释可以分别出图，每个占一行。 分别都可以有label的。
+生成图片可以附到之前的对象中。
+}
+\examples{
 \dontrun{
-    ## 绘制热图主干
-    # 调整tile 的宽、高，并且使空隙保持为固定值/不要有空隙。
+    ## 缁樺埗鐑浘涓诲共
+    # 璋冩暣tile 鐨勫銆侀珮锛屽苟涓斾娇绌洪殭淇濇寔涓哄浐瀹氬€<bc>/涓嶈鏈夌┖闅欍€<82>
     library(pacman)
     library(Loafer)
     get_or_set_dir()
@@ -48,40 +69,40 @@ get_label_tiles(
     library(ggplot2)
     library(plyr)
     library(magrittr)
-    library(tibble) ### 此包有毒。可能导致控制台无法进行屏幕输出。
+    library(tibble) ### 姝ゅ寘鏈夋瘨銆傚彲鑳藉鑷存帶鍒跺彴鏃犳硶杩涜灞忓箷杈撳嚭銆<82>
     getwd()
-    ### 需要解决的问题：
-    # 使用geom tile 绘制热图的主干。
-    # 进行环形绘图(放弃，需要另外写代码及函数)
-    # 能够挑一个比较合适的配色，白色放在中间。
-    # 使用 ggplot2包绘制热图主干。shadowText包添加注释。计划使用ggtree绘制热图用的聚类树。
-    # 使用 aplot包拼接各个图片。
-    ## 进行Z变换的函数
+    ### 闇€瑕佽В鍐崇殑闂锛<9a>
+    # 浣跨敤geom tile 缁樺埗鐑浘鐨勪富骞层€<82>
+    # 杩涜鐜舰缁樺浘(鏀惧純锛岄渶瑕佸彟澶栧啓浠ｇ爜鍙婂嚱鏁<b0>)
+    # 鑳藉鎸戜竴涓瘮杈冨悎閫傜殑閰嶈壊锛岀櫧鑹叉斁鍦ㄤ腑闂淬€<82>
+    # 浣跨敤 ggplot2鍖呯粯鍒剁儹鍥句富骞层€俿hadowText鍖呮坊鍔犳敞閲娿€傝鍒掍娇鐢╣gtree缁樺埗鐑浘鐢ㄧ殑鑱氱被鏍戙€<82>
+    # 浣跨敤 aplot鍖呮嫾鎺ュ悇涓浘鐗囥€<82>
+    ## 杩涜Z鍙樻崲鐨勫嚱鏁<b0>
     # trans_lines(mode = "add #'")
     data("iris")
-    assayData <- iris[1:30,1:4] %>% t
+    assayData <- iris[1:30,1:4] \%>\% t
     phenoData <- iris[1:30,5, drop = F]
-    featureData <-  data.frame(variable = iris %>% colnames %>% `[`(.,1:4), type = c("A", "A", "B", "B"))
+    featureData <-  data.frame(variable = iris \%>\% colnames \%>\% `[`(.,1:4), type = c("A", "A", "B", "B"))
     rownames(featureData) <- featureData[,1]
-    
-    ExpressionSet <- ExpressionSet(assayData = assayData, ## 要求是matrix格式，并且sample by col and feature by row.
+
+    ExpressionSet <- ExpressionSet(assayData = assayData, ## 瑕佹眰鏄痬atrix鏍煎紡锛屽苟涓攕ample by col and feature by row.
                                    phenoData = new("AnnotatedDataFrame",
-                                                   data = phenoData), ## 可以是数据框
-                                   featureData = new("AnnotatedDataFrame", data = featureData), ## 可以是数据框。
-                                   ## 采用protocol Data存储
-                                   protocolData   = new("AnnotatedDataFrame", data = assayData %>% t %>% data.frame), ## 可以是数据框
+                                                   data = phenoData), ## 鍙互鏄暟鎹
+                                   featureData = new("AnnotatedDataFrame", data = featureData), ## 鍙互鏄暟鎹銆<82>
+                                   ## 閲囩敤protocol Data瀛樺偍
+                                   protocolData   = new("AnnotatedDataFrame", data = assayData \%>\% t \%>\% data.frame), ## 鍙互鏄暟鎹
                                    experimentData = new("MIAME", title = "test"))
     ExpressionSet@assayData$exprs
     ExpressionSet@phenoData@data
     ExpressionSet@featureData@data
     ExpressionSet@protocolData@data
-    
-    heatmap_ls <- heatmap_trunk(ExpreessionSet_input = ExpressionSet)
+
+    heatmap_ls <- heatmap_trunk(ExpressionSet_input = ExpressionSet)
 p_load(aplot)
 library(Loafer)
-### 需要能够调节字号。
-ExpreessionSet_input = ExpressionSet
-heatmap_ls <- get_label_tiles(ExpreessionSet_input = ExpressionSet, heatmap_ls = heatmap_ls,
+### 闇€瑕佽兘澶熻皟鑺傚瓧鍙枫€<82>
+ExpressionSet_input = ExpressionSet
+heatmap_ls <- get_label_tiles(ExpressionSet_input = ExpressionSet, heatmap_ls = heatmap_ls,
                               tile.size.top.height = .57,
                               tile.size.top.width = .95,
                               tile.size.left.height = .9,
@@ -92,20 +113,10 @@ heatmap_ls$Left_labels$variable
 heatmap_ls$Left_labels$type
 heatmap_ls$Top_labels$Species
 
-heatmap_ls$heatmap_trunk %>% insert_top(heatmap_ls$Top_labels$Species, height = .05) %>%
-    # insert_top(heatmap_ls$Top_labels$NewClass, height = .04) %>%
-    insert_left(heatmap_ls$Left_labels$variable, width = .03) %>% 
-    insert_left(heatmap_ls$Left_labels$type, width = .03) %>% 
-    ggsave("測試label图2.png", ., width = 30, height = 9)
-}}
+heatmap_ls$heatmap_trunk \%>\% insert_top(heatmap_ls$Top_labels$Species, height = .05) \%>\%
+    # insert_top(heatmap_ls$Top_labels$NewClass, height = .04) \%>\%
+    insert_left(heatmap_ls$Left_labels$variable, width = .03) \%>\%
+    insert_left(heatmap_ls$Left_labels$type, width = .03) \%>\%
+    ggsave("娓│label鍥<be>2.png", ., width = 30, height = 9)
 }
-\description{
-get label plots
-}
-\details{
-输入  ExpressionSet对象。
-根据其中的表型数据和特征数据进行绘图。
-输入颜色。 输出一个label用的图。
-多列的注释可以分别出图，每个占一行。 分别都可以有label的。
-生成图片可以附到之前的对象中。
 }

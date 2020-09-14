@@ -5,8 +5,9 @@
 #' 调整各个文字的缩放比例
 #' 调整格子内部label的填充色和外部轮廓色。
 #' 调整mapping使用的颜色 ## 后续搞
-#' @param ExpreessionSet_input ExpreessionSet if set no more need to set dat and label df seperately.
-#' in the ExpreessionSet_input obj. label data were saved in the protocolData slot.
+#' 可以自动兼容热图中有/无 label的情况。
+#' @param ExpressionSet_input ExpressionSet if set no more need to set dat and label df seperately.
+#' in the ExpressionSet_input obj. label data were saved in the protocolData slot.
 #' @param dat df.
 #' @param label_df df. names need to be match with dat.
 #' @param axis.text.size size for axis text. 坐标轴文字的大小
@@ -43,7 +44,7 @@
 #' ExpressionSet@protocolData@data
 #'
 #' heatmap_ls <- heatmap_trunk(
-#'     ExpreessionSet_input = ExpressionSet,
+#'     ExpressionSet_input = ExpressionSet,
 #'     # dat = iris[1:20,1:4] ,
 #'     # label_df = iris[1:20,1:4] %>% round(., 2),
 #'     Z_by_row_or_col = "row",
@@ -71,30 +72,34 @@
 #' @return return a pic plot (ggplot2.)
 #' @export
 
-heatmap_trunk <- function(ExpreessionSet_input = NULL,
-                      dat = iris[1:20,1:4], label_df = iris[1:20,1:4] %>% round(., 2),
-                      Z_by_row_or_col = "row",
-                      axis.y.position = "right",
-                      axis.text.size = 18 , ## 调整坐标轴标签的字号（其他字号是在此基础上缩放得到的）
-                      label.size = 7.8   , ## 调整label的字号
-                      label.y.adj = -.09 , ##  调整label的位置
-                      label.color = "white" , ## label 的填充色
-                      label.color.bg = "firebrick" , ## label 轮廓的颜色。
-                      color.key.height = 5,
-                      color.key.width  = 1,
-                      plot.margin = c(1,1,1,1), # unit "cm"
-                      tile.border.col = "black" , ### color for tile border
-                      tile.colors = c("black","blue","white","orange","red"),
-                      tile.size = .7,
-                      expansion.x = .5,
-                      expansion.y = .5,
-                      tile.border.size = 2){
+heatmap_trunk <- function(ExpressionSet_input = NULL,
+                          dat = iris[1:20,1:4], label_df = iris[1:20,1:4] %>% round(., 2),
+                          Z_by_row_or_col = "row",
+                          axis.y.position = "right",
+                          axis.text.size = 18 ,
+                          ## 调整坐标轴标签的字号（其他字号是在此基础上缩放得到的）
+                          label.size = 7.8   , ## 调整label的字号
+                          label.y.adj = -.09 , ##  调整label的位置
+                          label.color = "white" , ## label 的填充色
+                          label.color.bg = "firebrick" , ## label 轮廓的颜色。
+                          color.key.height = 5,
+                          color.key.width  = 1,
+                          plot.margin = c(1,1,1,1), # unit "cm"
+                          tile.border.col = "black" , ### color for tile border
+                          tile.colors = c("black","blue","white","orange","red"),
+                          tile.size = .7,
+                          expansion.x = .5,
+                          expansion.y = .5,
+                          tile.border.size = 2){
 
   heatmap_ls <- list()
-  if(is.null(ExpreessionSet_input) == F){
-    dat <-  ExpreessionSet_input@assayData$exprs %>% data.frame(., check.names = F, stringsAsFactors = F)
-    label_df <- ExpreessionSet_input@protocolData@data %>% t %>% data.frame(., check.names = F, stringsAsFactors = F)
+  if(is.null(ExpressionSet_input) == F){
+    dat <-  ExpressionSet_input@assayData$exprs %>% data.frame(., check.names = F, stringsAsFactors = F)
+
+
+    label_df <- ExpressionSet_input@protocolData@data %>% t %>% data.frame(., check.names = F, stringsAsFactors = F)
   }
+
 
   ### match args to ensure the input is right.
   Z_by_row_or_col <- Z_by_row_or_col %>%  match.arg(c("row", "col",NULL))
@@ -198,7 +203,7 @@ if(F){
   ExpressionSet@protocolData@data
 
   heatmap_ls <- heatmap_trunk(
-    ExpreessionSet_input = ExpressionSet,
+    ExpressionSet_input = ExpressionSet,
     # dat = iris[1:20,1:4] ,
     # label_df = iris[1:20,1:4] %>% round(., 2),
     Z_by_row_or_col = "row",

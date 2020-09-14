@@ -6,7 +6,7 @@
 Plot the trunk (tiles) for heatmap}
 \usage{
 heatmap_trunk(
-  ExpreessionSet_input = NULL,
+  ExpressionSet_input = NULL,
   dat = iris[1:20, 1:4],
   label_df = iris[1:20, 1:4] \%>\% round(., 2),
   Z_by_row_or_col = "row",
@@ -28,8 +28,8 @@ heatmap_trunk(
 )
 }
 \arguments{
-\item{ExpreessionSet_input}{ExpreessionSet if set no more need to set dat and label df seperately.
-in the ExpreessionSet_input obj. label data were saved in the protocolData slot.}
+\item{ExpressionSet_input}{ExpressionSet if set no more need to set dat and label df seperately.
+in the ExpressionSet_input obj. label data were saved in the protocolData slot.}
 
 \item{dat}{df.}
 
@@ -74,6 +74,7 @@ plot the trunk via geom_tile and add labels via geom_shadowtext.
 调整各个文字的缩放比例
 调整格子内部label的填充色和外部轮廓色。
 调整mapping使用的颜色 ## 后续搞
+可以自动兼容热图中有/无 label的情况。
 }
 \examples{
 \dontrun{
@@ -96,7 +97,7 @@ ExpressionSet@featureData@data
 ExpressionSet@protocolData@data
 
 heatmap_ls <- heatmap_trunk(
-    ExpreessionSet_input = ExpressionSet,
+    ExpressionSet_input = ExpressionSet,
     # dat = iris[1:20,1:4] ,
     # label_df = iris[1:20,1:4] \%>\% round(., 2),
     Z_by_row_or_col = "row",

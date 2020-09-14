@@ -1,19 +1,23 @@
 #' @title get label plots
-#' @details 
-#' 输入  ExpressionSet对象。 
+#' @details
+#' 输入  ExpressionSet对象。
 #' 根据其中的表型数据和特征数据进行绘图。
 #' 输入颜色。 输出一个label用的图。
 #' 多列的注释可以分别出图，每个占一行。 分别都可以有label的。
 #' 生成图片可以附到之前的对象中。
-#' @param ExpreessionSet_input
+#' @param ExpressionSet_input
 #' @param heatmap_ls heatmap_ls for append heatmap pics
 #' @param color_ls color list for mannually set colors for class.
+#' @param show_labels logical. IF true: show the labels. Users can valide the plot convenience.
 #' @param tile.size.top.height tile height for top label.
 #' @param tile.size.top.width tile width for top label.
 #' @param tile.size.left.height tile height for left label.
 #' @param tile.size.left.width tile width for top label.
-#' @param expansion.top.y unit = "cm". expansion for 
+#' @param expansion.top.y unit = "cm". expansion for
 #' @param expansion.left.x unit = "cm"
+#' @param axis.text.size base size of text
+#' @param plot.margin plot.margin
+#' @examples
 #' \dontrun{
 #'     ## 绘制热图主干
 #'     # 调整tile 的宽、高，并且使空隙保持为固定值/不要有空隙。
@@ -43,7 +47,7 @@
 #'     phenoData <- iris[1:30,5, drop = F]
 #'     featureData <-  data.frame(variable = iris %>% colnames %>% `[`(.,1:4), type = c("A", "A", "B", "B"))
 #'     rownames(featureData) <- featureData[,1]
-#'     
+#'
 #'     ExpressionSet <- ExpressionSet(assayData = assayData, ## 要求是matrix格式，并且sample by col and feature by row.
 #'                                    phenoData = new("AnnotatedDataFrame",
 #'                                                    data = phenoData), ## 可以是数据框
@@ -55,13 +59,13 @@
 #'     ExpressionSet@phenoData@data
 #'     ExpressionSet@featureData@data
 #'     ExpressionSet@protocolData@data
-#'     
-#'     heatmap_ls <- heatmap_trunk(ExpreessionSet_input = ExpressionSet)
+#'
+#'     heatmap_ls <- heatmap_trunk(ExpressionSet_input = ExpressionSet)
 #' p_load(aplot)
 #' library(Loafer)
 #' ### 需要能够调节字号。
-#' ExpreessionSet_input = ExpressionSet
-#' heatmap_ls <- get_label_tiles(ExpreessionSet_input = ExpressionSet, heatmap_ls = heatmap_ls,
+#' ExpressionSet_input = ExpressionSet
+#' heatmap_ls <- get_label_tiles(ExpressionSet_input = ExpressionSet, heatmap_ls = heatmap_ls,
 #'                               tile.size.top.height = .57,
 #'                               tile.size.top.width = .95,
 #'                               tile.size.left.height = .9,
@@ -71,58 +75,83 @@
 #' heatmap_ls$Left_labels$variable
 #' heatmap_ls$Left_labels$type
 #' heatmap_ls$Top_labels$Species
-#' 
+#'
 #' heatmap_ls$heatmap_trunk %>% insert_top(heatmap_ls$Top_labels$Species, height = .05) %>%
 #'     # insert_top(heatmap_ls$Top_labels$NewClass, height = .04) %>%
-#'     insert_left(heatmap_ls$Left_labels$variable, width = .03) %>% 
-#'     insert_left(heatmap_ls$Left_labels$type, width = .03) %>% 
+#'     insert_left(heatmap_ls$Left_labels$variable, width = .03) %>%
+#'     insert_left(heatmap_ls$Left_labels$type, width = .03) %>%
 #'     ggsave("測試label图2.png", ., width = 30, height = 9)
 #' }
 #' @importFrom tibble rownames_to_column
 #' @export
-get_label_tiles <- function(ExpreessionSet_input = ExpressionSet,
+get_label_tiles <- function(ExpressionSet_input = ExpressionSet,
                             heatmap_ls = heatmap_ls,
                             color_ls = list(
-                                ## 以列名为向量的名称。 每个向量内部是一系列赋值的因子-颜色对子。
-                                Species = c(setosa = "pink", versicolor = "black"),
-                                NewClass = c(New = "red", Old = "cyan"),
-                                variable = c(Sepal.Length = "green", Sepal.Width = "yellow", 
-                                             Petal.Length = "red", Petal.Width = "black"),
-                                type = c(A = "grey30", B = "cyan")),
+                              ## 以列名为向量的名称。 每个向量内部是一系列赋值的因子-颜色对子。
+                              Species = c(setosa = "pink", versicolor = "black"),
+                              NewClass = c(New = "red", Old = "cyan"),
+                              variable = c(Sepal.Length = "green", Sepal.Width = "yellow",
+                                           Petal.Length = "red", Petal.Width = "black"),
+                              type = c(A = "grey30", B = "cyan")),
                             tile.size.top.height = .87,
                             tile.size.top.width = .5,
                             tile.size.left.height = .5,
+                            axis.text.size = 20,
+                            plot.margin = c(1,1,1,1),
                             tile.size.left.width = .97,
+                            show_labels = F,
                             expansion.top.y = .1,
                             expansion.left.x = .05){
-    ### Get labels on top
-    dat <- ExpreessionSet_input@phenoData@data
-    dat <- rownames_to_first_column(df = dat, colname = "rowname")
-    for (i in 2:ncol(dat)){
-        eachvar = colnames(dat)[i]
-        pic_labels <-  ggplot(dat, aes_string(x = "rowname", y = 0, fill = eachvar)) + 
-            geom_tile(aes(width = tile.size.top.width, height = tile.size.top.height), 
-                      size = 1, position = position_nudge(y = 9)) +
-            scale_fill_manual(values = color_ls[[eachvar]]) +
-            # scale_x_discrete(expand = expansion(add = .1)) +
-            scale_y_discrete(expand = expansion(add = expansion.top.y)) +
-            theme_void() +
-            theme(plot.margin = unit(x = c(100, 10, 10, 10), units = "cm"))  ###
-        heatmap_ls[["Top_labels"]][[eachvar]] <- pic_labels
+  ### Get labels on top
+  dat <- ExpressionSet_input@phenoData@data
+  dat <- rownames_to_first_column(df = dat, colname = "rowname")
+  for (i in 2:ncol(dat)){
+    eachvar = colnames(dat)[i]
+    pic_labels <-  ggplot(dat, aes_string(x = "rowname", y = 0, fill = eachvar)) +
+      geom_tile(aes(width = tile.size.top.width, height = tile.size.top.height),
+                size = 1, position = position_nudge(y = 9)) +
+      scale_fill_manual(values = color_ls[[eachvar]]) +
+      # scale_x_discrete(expand = expansion(add = .1)) +
+      scale_y_discrete(expand = expansion(add = expansion.top.y)) +
+      theme_void() +
+      theme(panel.grid.major=element_blank()
+            ,panel.grid.minor=element_blank()
+            ,panel.border = element_blank()
+            ,plot.margin = unit(plot.margin, "cm") ### 调整四周与其他图片的间距
+            ,legend.title = element_text(size = axis.text.size * 1.3)
+            ,legend.text = element_text(size = axis.text.size * 1.1)
+            ,legend.position = "right") ## 调整图例位置.
+
+    if(show_labels == T){
+      pic_labels <- pic_labels + theme(axis.text.x = element_text(size = axis.text.size, angle = 90)
+                                       ,axis.text.y = element_text(size = axis.text.size))
     }
-    # heatmap_ls$Top_labels
-    ### Get labels on Left
-    dat <- ExpreessionSet_input@featureData@data
-    dat <- rownames_to_first_column(df = dat, colname = "rowname")
-    for(i in 2:ncol(dat)){
-        eachvar = colnames(dat)[i]
-        pic_labels <-  ggplot(dat, aes_string(x = 0, y = "rowname", fill = eachvar)) + 
-            geom_tile(aes(width = tile.size.left.width, height = tile.size.left.height), size = 1) +
-            scale_fill_manual(values = color_ls[[eachvar]]) +
-            scale_x_discrete(expand = expansion(add = expansion.left.x)) +
-            # scale_y_discrete(expand = expansion(add = .01)) +
-            theme_void()
-        heatmap_ls[["Left_labels"]][[eachvar]] <- pic_labels
+    heatmap_ls[["Top_labels"]][[eachvar]] <- pic_labels
+  }
+  # heatmap_ls$Top_labels
+  ### Get labels on Left
+  dat <- ExpressionSet_input@featureData@data
+  dat <- rownames_to_first_column(df = dat, colname = "rowname")
+  for(i in 2:ncol(dat)){
+    eachvar = colnames(dat)[i]
+    pic_labels <-  ggplot(dat, aes_string(x = 0, y = "rowname", fill = eachvar)) +
+      geom_tile(aes(width = tile.size.left.width, height = tile.size.left.height), size = 1) +
+      scale_fill_manual(values = color_ls[[eachvar]]) +
+      scale_x_discrete(expand = expansion(add = expansion.left.x)) +
+      # scale_y_discrete(expand = expansion(add = .01)) +
+      theme_void() +
+      theme(panel.grid.major=element_blank()
+            ,panel.grid.minor=element_blank()
+            ,panel.border = element_blank()
+            ,plot.margin = unit(plot.margin, "cm") ### 调整四周与其他图片的间距
+            ,legend.title = element_text(size = axis.text.size * 1.3)
+            ,legend.text = element_text(size = axis.text.size * 1.1)
+            ,legend.position = "right")
+    if(show_labels == T){
+      pic_labels <- pic_labels + theme(axis.text.x = element_text(size = axis.text.size, angle = 90)
+                                       ,axis.text.y = element_text(size = axis.text.size))
     }
-    return(heatmap_ls)
+    heatmap_ls[["Left_labels"]][[eachvar]] <- pic_labels
+  }
+  return(heatmap_ls)
 }
