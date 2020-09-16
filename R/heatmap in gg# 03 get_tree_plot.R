@@ -7,20 +7,25 @@
 #' 同时产出两个树形图（横、竖方向）
 #' 调整树的颜色、粗细、线性
 #' 调整树的叶子的颜色、形状。
-#' @description 像 ggtree 创建的Tree对象添加数据的方法：创建一个数据框。
+#'
+#' 参数param后面的解释，不能够以中文、#开头，必须以英文字母开头，否则会warning
+#' 何其屈辱。Fuck!
+#' @description
+#' 像 ggtree 创建的Tree对象添加数据的方法：创建一个数据框。
 #' 确保第一列是树的根节点的名字，其他的列为各种属性即可。
-#' @param ExpressionSet_input 输入数据集
+#' @param ExpressionSet_input ExpressionSet 输入数据集
 #' @param heatmap_ls a list to store the heatmap subplots.
 #' @param tree.color color for the tree.
-#' @param selected_var.feature
-#' @param selected_var.pheno
+#' @param selected_var.feature selected_var. for feature
+#' @param selected_var.pheno selected_var for pheno
 #' @param heighted_v the nodes need to be heighted in branch.
 #' @param tip.shape the shape of the nodes
 #' @param tip.size the size of the nodes
-#' @param colors_c_readonly the colors for mapping.#'
-#' @param heighted_nodes 要进行重点强调的Nodes ## 一般不建议与叶子的图形强调一同使用。
+#' @param colors_c_readonly the colors for mapping.
+#' @param heighted_nodes height of nodes 要进行重点强调的
+#' Nodes 一般不建议与叶子的图形强调一同使用。
 #' @param as_tip_fill.feature character ## 要作为填充依据的表型列名
-#' @param as_tip_fill.pheno  # 要作为填充色依据的特征列名。
+#' @param as_tip_fill.pheno  Start with English: 要作为填充色依据的特征列名。
 #' @param axis.text.size base size of text
 #' @param plot.margin plot.margin
 #' @param show_labels logical. If True, the labels will be showned. which can be helpful for user to
@@ -115,19 +120,12 @@ get_heatmap_tree <- function(ExpressionSet_input,
     heatmap_ls$Left_Tree <- pic
   }
 
-  # heighted_v <- c(23, 29)
-
   { ## get top tree:
     colors_c <- colors_c_readonly
     r_df <- ExpressionSet_input@assayData$exprs
     df <- ExpressionSet_input@phenoData@data
     df <- rownames_to_first_column(df,"rowname")
-    # df %>% class
-    # df$Species <- df$Species %>% as.character()
-    # df$Species[1:5] <- "New class"
-    # df$New_test <- "111"
-    # df %>% str
-    # df
+
     hc <- hclust(dist(r_df %>% t), "ave")
     pic <- ggtree(hc, size = tree.size, color = tree.color) %<+% df  + layout_dendrogram()+
       theme(panel.grid.major=element_blank()
@@ -158,9 +156,6 @@ get_heatmap_tree <- function(ExpressionSet_input,
     shape_c <- rep(tip.shape, length(levels))
     colors_c <- colors_c[length(colors_c) + 1 - 1:length(levels)]
     names(shape_c) <- names(colors_c) <- levels
-    # df %>% head
-    # pic
-    # pic$data$Species
     if(is.null(selected_var.feature) %>% `!`){
       data_for_pic <- pic$data %>% as.data.frame
       data_for_pic <- data_for_pic$label %>% is.na() %>% `!` %>% data_for_pic[.,]
@@ -180,4 +175,3 @@ get_heatmap_tree <- function(ExpressionSet_input,
   }
   return(heatmap_ls)
 }
-

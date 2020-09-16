@@ -22,6 +22,8 @@ get_label_tiles(
 )
 }
 \arguments{
+\item{ExpressionSet_input}{ExpressionSet}
+
 \item{heatmap_ls}{heatmap_ls for append heatmap pics}
 
 \item{color_ls}{color list for mannually set colors for class.}

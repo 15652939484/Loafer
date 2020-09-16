@@ -22,11 +22,15 @@ get_heatmap_tree(
 )
 }
 \arguments{
-\item{ExpressionSet_input}{输入数据集}
+\item{ExpressionSet_input}{ExpressionSet 输入数据集}
 
 \item{heatmap_ls}{a list to store the heatmap subplots.}
 
 \item{tree.color}{color for the tree.}
+
+\item{selected_var.feature}{selected_var. for feature}
+
+\item{selected_var.pheno}{selected_var for pheno}
 
 \item{heighted_v}{the nodes need to be heighted in branch.}
 
@@ -41,13 +45,14 @@ varify the sub plots.}
 
 \item{plot.margin}{plot.margin}
 
-\item{colors_c_readonly}{the colors for mapping.#'}
+\item{colors_c_readonly}{the colors for mapping.}
 
-\item{heighted_nodes}{要进行重点强调的Nodes ## 一般不建议与叶子的图形强调一同使用。}
+\item{heighted_nodes}{height of nodes 要进行重点强调的
+Nodes 一般不建议与叶子的图形强调一同使用。}
 
 \item{as_tip_fill.feature}{character ## 要作为填充依据的表型列名}
 
-\item{as_tip_fill.pheno}{要作为填充色依据的特征列名。}
+\item{as_tip_fill.pheno}{Start with English: 要作为填充色依据的特征列名。}
 }
 \value{
 heatmap_ls 返回包含左、上两棵树的图片列表结果。
@@ -64,6 +69,9 @@ heatmap_ls 返回包含左、上两棵树的图片列表结果。
 同时产出两个树形图（横、竖方向）
 调整树的颜色、粗细、线性
 调整树的叶子的颜色、形状。
+
+参数param后面的解释，不能够以中文、#开头，必须以英文字母开头，否则会warning
+何其屈辱。Fuck!
 }
 \examples{
 \dontrun{

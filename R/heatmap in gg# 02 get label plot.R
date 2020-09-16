@@ -5,7 +5,7 @@
 #' 输入颜色。 输出一个label用的图。
 #' 多列的注释可以分别出图，每个占一行。 分别都可以有label的。
 #' 生成图片可以附到之前的对象中。
-#' @param ExpressionSet_input
+#' @param ExpressionSet_input ExpressionSet
 #' @param heatmap_ls heatmap_ls for append heatmap pics
 #' @param color_ls color list for mannually set colors for class.
 #' @param show_labels logical. IF true: show the labels. Users can valide the plot convenience.
