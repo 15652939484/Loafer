@@ -1,6 +1,5 @@
 #' @title
 #' Combine modules.
-#'
 #' @details
 #' #' 本页的函数是为了简化实际筛选模型/方法/参数以便获得更好的预测效果所做的尝试
 #' 具体修改的主要有：同时提供训练集和验证集的AUC结果；部分方法会提供必要的参数；尝试了多种不同的方法。
@@ -16,8 +15,10 @@ Combine_modules <- function(module_obj){
     try(pulled_df <- module.RF(module_obj)  %>% `[[`(.,"res_df") %>% rbind(pulled_df, .))
     try(pulled_df <- module.LR.step(module_obj)  %>% `[[`(.,"res_df") %>% rbind(pulled_df, .))
     try(pulled_df <- module.Bayes(module_obj)  %>% `[[`(.,"res_df") %>% rbind(pulled_df, .))
-    try(pulled_df <- module.Lasso_or_Ridge(module_obj, Lasso_or_Ridge = "Lasso")  %>% `[[`(.,"res_df") %>% rbind(pulled_df, .))
-    try(pulled_df <- module.Lasso_or_Ridge(module_obj, Lasso_or_Ridge = "Ridge")  %>% `[[`(.,"res_df") %>% rbind(pulled_df, .))
+    try(pulled_df <- module.Lasso_or_Ridge(module_obj, Lasso_or_Ridge = "Lasso")  %>%
+          `[[`(.,"res_df") %>% rbind(pulled_df, .))
+    try(pulled_df <- module.Lasso_or_Ridge(module_obj, Lasso_or_Ridge = "Ridge")  %>%
+          `[[`(.,"res_df") %>% rbind(pulled_df, .))
     try(pulled_df <- module.Elastic_Net(module_obj)  %>% `[[`(.,"res_df") %>% rbind(pulled_df, .))
     return(pulled_df)
 }
@@ -35,10 +36,6 @@ module.LR <- function(module_obj){
     module_obj$method_note <- "LR" # method_note: a note about the module and method and param used.
     get_the_auc(module_obj)
 }
-
-
-
-
 
 #' @title building modules by using LR 使用LR进行建模
 #'
@@ -69,9 +66,7 @@ module.RF <- function(module_obj, mtry = 3, nodesize = 5, ntree = 10000){
                                          importance=TRUE, na.action=na.omit, nodesize = nodesize)
     module_obj$method_note <- "RF" %>% paste(.,"mtry:", mtry,"nodesize:", nodesize, "ntree", ntree) # method_note: a note about the module and method and param used.
     get_the_auc(module_obj)
-
 }
-
 
 #' @title building models by using gbm from gbm package
 #' @description
@@ -106,10 +101,7 @@ module.Bayes <- function(module_obj, laplace = 0){
     module_obj$fit_train <- naiveBayes(module_obj$my_formula, data = module_obj$train, laplace = laplace)
     module_obj$method_note <- "Bayes" %>% paste(., "laplace:", laplace)
     get_the_auc(module_obj, method = "bayes")
-
 }
-
-
 
 #' @title get module by Lasso_or_Ridge使用岭回归进行分类分析。
 #' @description
@@ -117,7 +109,6 @@ module.Bayes <- function(module_obj, laplace = 0){
 #' @param module_obj inheritParams from get_the_auc
 #' @param Lasso_or_Ridge character: Lasso or Ridge to set different methods.
 #' @export
-
 module.Lasso_or_Ridge <- function(module_obj, Lasso_or_Ridge = "Lasso"){
     ##
     if(Lasso_or_Ridge == "Lasso"){
@@ -144,7 +135,6 @@ module.Lasso_or_Ridge <- function(module_obj, Lasso_or_Ridge = "Lasso"){
     ### 进行预测
     get_the_auc.Lasso_and_Ridge(module_obj)
 }
-
 
 #' @title building modules by using Elastic Net
 #' @description
@@ -183,7 +173,6 @@ module.Elastic_Net <- function(module_obj, method = "repeatedcv", cv.repeats = 7
 
 
 # pred_num <- predict(module_obj$fit_train, newdata = module_obj$train)
-
 #' @title get the auc of train and test data.
 #' @description get the auc of train and test data.
 #' 可以为RF、LR、贝叶斯、弹性网络等模型提供AUC。
@@ -252,7 +241,6 @@ get_the_auc <- function(module_obj, method = "normal"){
 get_the_auc.Lasso_and_Ridge <- function(module_obj){
     ### get the result.
     {### 训练集的AUC
-
         pred_num <- predict(module_obj$fit_train, newx = module_obj$x.train,
                             s = module_obj$lambda_best) %>% `[`(.,,1)## 先计算概率
 
@@ -261,17 +249,14 @@ get_the_auc.Lasso_and_Ridge <- function(module_obj){
         AUC.train <- AUC_ls %>% `[[`(.,"auc") %>% sub("Area under the curve: ","",.) %>% as.numeric %>% round(., digits = 3)## roc 函数使用 factor形式即可。
         direction <- AUC_ls %>% `[[`(., "direction")
         ## 训练集确定方向后，验证集应当使用相同的方向才对。
-
         module_obj$for_plot$train$pred_num <- pred_num
         module_obj$for_plot$train$real_I <- real_I
         module_obj$for_plot$train$AUC_direction <- direction
     }
 
     {### 验证集的AUC
-
         pred_num <- predict(module_obj$fit_train, newx = module_obj$x.test,
                             s = module_obj$lambda_best) %>% `[`(.,,1)## 先计算概率
-
         real_I <-   module_obj$test$group
         AUC.test <- roc(real_I, pred_num, direction = direction) %>% `[[`(.,"auc") %>% sub("Area under the curve: ","",.) %>% as.numeric %>% round(., digits = 3)## roc 函数使用 factor形式即可。
 

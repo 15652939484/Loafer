@@ -26,3 +26,57 @@ clean the var names : remove the blank and other codes
 when the var wasn't started with letters, the head will be added.
 generate formulas
 }
+\examples{
+\dontrun{
+iris \%>\% head
+  demo_df <- iris$Species \%in\% c("versicolor", "virginica") \%>\% iris[.,] ## 浠呬繚鐣㤼㸹2绉嶆按骞戼㸳
+  rownames(demo_df) <- paste0("Person",1:nrow(demo_df))
+  IS_train <- sample(x = c(T,F),size = nrow(demo_df), replace = T, prob = c(0.7,0.3))
+  train_m <- demo_df[IS_train,1:4] \%>\% t
+  test_m <- demo_df[!IS_train,1:4] \%>\% t
+  ### 闇€瑕佹湁SampleID鍜孋lassNote杩欎袱鍒椼€㠼㸲
+  group.train_df <- data.frame(SampleID = rownames(demo_df[IS_train,]), ClassNote = demo_df[IS_train,  5])
+  group.test_df  <- data.frame(SampleID = rownames(demo_df[!IS_train,]), ClassNote = demo_df[!IS_train,  5])
+  rownames(group.train_df) <- group.train_df$SampleID
+  rownames(group.test_df) <- group.test_df$SampleID
+  ## Get data set
+  Train.set <- Biobase::ExpressionSet(assayData = train_m,
+                                      phenoData = new("AnnotatedDataFrame", data = group.train_df),
+                                      experimentData = new("MIAME", title = "demo_train"))
+  Test.set <- Biobase::ExpressionSet(assayData = test_m,
+                                     phenoData = new("AnnotatedDataFrame", data = group.test_df),
+                                     experimentData = new("MIAME", title = "demo_test"))
+
+  # import_MP_datas
+  ### Get module data
+  module_obj <- Loafer::get_module_data(
+    sig_v = test_m \%>\% rownames, #c("L_Aspartic acid", "L_Serine","9987","_ddd dkkj"),
+    train_set = Train.set,
+    test_set = Test.set)
+  ## do the prediction by combined functions
+  pulled_df <- Loafer::Combine_modules(module_obj)
+  pulled_df
+  ## see the different ways to build a module.
+  # Loafer::Combine_modules
+  # Loafer::module.RF
+  ## do the prediction by each single functions
+  new_module_obj <- Loafer::module.LR.step(module_obj)
+  res_by_LR.step <- Loafer::module.LR.step(module_obj) \%>\% `[[`(.,"res_df")
+  # res_by_LR.step
+
+  module_obj <- new_module_obj
+  ## We can plot each ROC manually
+  Loafer::plot_roc_by_pROC(real_I = module_obj$for_plot$train$real_I,
+                           pred_num = module_obj$for_plot$train$pred_num,
+                           fit_note = module_obj$method_note \%>\% paste("train data Manual ROC",.),
+                           IS_smooth = F)
+
+  Loafer::plot_roc_by_pROC(real_I = module_obj$for_plot$test$real_I,
+                           pred_num = module_obj$for_plot$test$pred_num,
+                           fit_note = module_obj$method_note \%>\% paste("test data Manual ROC",.),
+                           IS_smooth = F)
+  ## Or we can use the intergerted function to get the module ROC for test or train data.
+  Loafer::plot_roc_from_module_obj(module_obj, Note = "my module")
+  getwd()
+}
+}

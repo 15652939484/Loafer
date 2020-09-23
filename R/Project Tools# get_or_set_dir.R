@@ -117,12 +117,12 @@ load_functions <- function(my_function_path = fun_path,
   return(final_function_table)
 }
 
-
 #' @title Function Catcher
 #' @details catch the functions in the scripts.
 #' sub function for the load_functions
 #' @param eachfile path of the script file
 #' @param final_function_table the final table of functions.
+#' @importFrom readr read_file
 #' @export
 function_catcher <- function(eachfile, final_function_table){
 
