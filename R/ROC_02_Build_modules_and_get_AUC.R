@@ -23,6 +23,89 @@ Combine_modules <- function(module_obj){
     return(pulled_df)
 }
 
+
+#' @title
+#' Combine modules and return the detailed imformations
+#'
+#' @details
+#' #' 本页的函数是为了简化实际筛选模型/方法/参数以便获得更好的预测效果所做的尝试
+#' 具体修改的主要有：同时提供训练集和验证集的AUC结果；部分方法会提供必要的参数；尝试了多种不同的方法。
+#' 只要将各个模型的predict值输出就可以接ROC可视化了。
+#' @param module_obj inheritParams from get_the_auc
+#' @export
+Combine_modules_and_predicts_for_ROC <- function(module_obj){
+  ### 有些模型在效果不好（如使用随机数据+随机变量）的时候是可能报错的。
+  combined_ls <- list()
+  pulled_df <- NULL
+  # pulled_df <- module.LR(module_obj) %>% `[[`(.,"res_df")  %>% rbind(pulled_df, .)
+
+  try({
+    module_obj.temp <- module.LR(module_obj)
+    combined_ls$module$LR <- module_obj.temp
+    pulled_df <- module_obj.temp$res_df %>% rbind(pulled_df, .)
+  })
+  try({
+    module_obj.temp <- module.LR.step(module_obj)
+    combined_ls$module$LR.step <- module_obj.temp
+    pulled_df <- module_obj.temp$res_df %>% rbind(pulled_df, .)
+  })
+  try({
+    module_obj.temp <- module.RF(module_obj)
+    combined_ls$module$RF <- module_obj.temp
+    pulled_df <- module_obj.temp$res_df %>% rbind(pulled_df, .)
+  })
+  try({
+    module_obj.temp <- module.GB(module_obj)
+    combined_ls$module$GB <- module_obj.temp
+    pulled_df <- module_obj.temp$res_df %>% rbind(pulled_df, .)
+  })
+  try({
+    module_obj.temp <- module.Bayes(module_obj)
+    combined_ls$module$Bayes <- module_obj.temp
+    pulled_df <- module_obj.temp$res_df %>% rbind(pulled_df, .)
+  })
+  try({
+    module_obj.temp <- module.Lasso_or_Ridge(module_obj, Lasso_or_Ridge = "Lasso")
+    combined_ls$module$Lasso <- module_obj.temp
+    pulled_df <- module_obj.temp$res_df %>% rbind(pulled_df, .)
+  })
+
+  try({
+    module_obj.temp <- module.Lasso_or_Ridge(module_obj, Lasso_or_Ridge = "Ridge")
+    combined_ls$module$Ridge <- module_obj.temp
+    pulled_df <- module_obj.temp$res_df %>% rbind(pulled_df, .)
+  })
+
+  try({
+    module_obj.temp <- module.Elastic_Net(module_obj)
+    combined_ls$module$Elastic_Net <- module_obj.temp
+    pulled_df <- module_obj.temp$res_df %>% rbind(pulled_df, .)
+  })
+
+  combined_ls$pulled_df <- pulled_df
+  return(combined_ls)
+}
+
+
+
+# combined_ls$module$LR$for_plot$train$pred_num
+# combined_ls$module$LR$for_plot$train$real_I
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #' @title building modules by using LR 使用LR进行建模
 #'
 #' @param module_obj inheritParams from get_the_auc
@@ -90,6 +173,8 @@ module.GB <- function(module_obj){
     module_obj$method_note <- "GB" # method_note: a note about the module and method and param used.
     get_the_auc(module_obj)
 }
+
+
 
 #' @title Module with Bayes采用贝叶斯分类器进行计算
 #' @description
