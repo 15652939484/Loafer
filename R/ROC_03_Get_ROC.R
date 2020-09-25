@@ -24,7 +24,7 @@ plot_roc_by_pROC <- function(real_I, pred_num,
 
     ### 创建文件夹：
     # dir.create(file_path, recursive = T, showWarnings = F)
-    filename <-  paste("ROC plot",fit_note,".pdf")
+    filename <-  paste(fit_note,".pdf")
     pdf(file = filename, family = "Times")
     roc_by_proc <- pROC::roc(response  = real_I,
                              predictor = pred_num,
