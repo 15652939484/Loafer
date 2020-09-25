@@ -15,6 +15,7 @@ Imports:
     Biobase,
     ggtree,
     treeio,
+    tibble,
     shadowtext,
     reshape2,
     randomForest,

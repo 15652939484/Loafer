@@ -2,6 +2,7 @@
 
 export("%notin%")
 export(Combine_modules)
+export(Combine_modules_and_predicts_for_ROC)
 export(Greek_to_Enl)
 export(Redirect_text_from_screen)
 export(Test_reread_data_from_sysdata)

@@ -9,10 +9,10 @@
 #' @export
 Combine_modules <- function(module_obj){
     ### 有些模型在效果不好（如使用随机数据+随机变量）的时候是可能报错的。
-    pulled_df <- NULL
-    try(pulled_df <- module.LR(module_obj) %>% `[[`(.,"res_df")  %>% rbind(pulled_df, .))
-    try(pulled_df <- module.GB(module_obj) %>% `[[`(.,"res_df") %>% rbind(pulled_df, .) )
-    try(pulled_df <- module.RF(module_obj)  %>% `[[`(.,"res_df") %>% rbind(pulled_df, .))
+  pulled_df <- NULL
+  try(pulled_df <- module.LR(module_obj) %>% `[[`(.,"res_df")  %>% rbind(pulled_df, .))
+  try(pulled_df <- module.GB(module_obj) %>% `[[`(.,"res_df") %>% rbind(pulled_df, .) )
+  try(pulled_df <- module.RF(module_obj)  %>% `[[`(.,"res_df") %>% rbind(pulled_df, .))
     try(pulled_df <- module.LR.step(module_obj)  %>% `[[`(.,"res_df") %>% rbind(pulled_df, .))
     try(pulled_df <- module.Bayes(module_obj)  %>% `[[`(.,"res_df") %>% rbind(pulled_df, .))
     try(pulled_df <- module.Lasso_or_Ridge(module_obj, Lasso_or_Ridge = "Lasso")  %>%
