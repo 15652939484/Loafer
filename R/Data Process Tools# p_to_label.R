@@ -24,18 +24,25 @@ p_to_label <- function(input, digits= 4,
                        labels =c("***","**","*",""),
                        trans_to_character = T,
                        drop_p = T,
+
                        include_right_bound = F){
   cat ( " <0.001, <0.01, <0.05 and <= 1 were used to cut the raw p values in default ") ###
 
-  label_vector   <-  cut ( input , breaks , labels , right = include_right_bound  ) %>% str_pad ( . , width = 3, side = "right") ## 先生成标记
+  label_vector   <-  cut ( input, breaks , labels , right = include_right_bound  ) ## 先生成标记
   neat_number    <-  neat_round ( input , digits =  digits ) ### get data
+
   if(trans_to_character == T){ ## trans qualified p to "<0.0001".
     neat_number[input <0.0001] <- "<0.0001" ## 替换特殊值
   }
+
   if(drop_p == T){
     output <- label_vector
   }else{
-    output <-  paste (neat_number, label_vector ) ### combine the pvalue and the label.
+    output <- paste(neat_number, label_vector ) ### combine the pvalue and the label.
   }
+
+
+
+
   return ( output )
 }

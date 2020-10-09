@@ -28,3 +28,38 @@ Redirect_text_from_screen <-  function(my_message){
   file.remove("temp.txt")
   return(temp_df)
 }
+
+##
+
+
+
+#' @title redirect some obj same as the Redirect_text_from_screen Function.
+#'
+#' @description (such as some model summary, which can be assigned directly.)
+#'   this function redirect the text into a temp file and reread it.
+#'   Read only for some old functions are depended on it.
+#'@param  my_message, obj print in the screen
+#' and can't be assigned to other variables directly.
+#'@examples
+#'\dontrun{data("iris")
+#'head(iris)
+#'z <- lm(Sepal.Length ~ Sepal.Width + Species, data = iris)
+#'z
+#'summary(z)
+#'k <- summary(z)
+#'k
+#'q <- Redirect_text_from_screen(summary(z))
+#'q
+#'}
+#'@return text by line. trans imformation into text and can be value assigned to other vars.
+#'@export
+
+zd_Get_text_from_screen <-  function(my_message){
+  ### 从屏幕输出中获取结果。
+  ### 将结果文字返回。
+  sink(file = "临时文件.txt",append = F, type = "output")
+  print(my_message)
+  sink()
+  temp_df <-  read.delim("临时文件.txt",sep = "\n")
+  return(temp_df)
+}
