@@ -8,7 +8,7 @@ p_to_label(
   input,
   digits = 4,
   breaks = c(-0.00000000001, 0.001, 0.01, 0.05, 1.0001),
-  labels = c("***", "**", "*", ""),
+  labels = c("***", "* *", " * ", "   "),
   trans_to_character = T,
   drop_p = T,
   include_right_bound = F
