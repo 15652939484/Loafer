@@ -93,4 +93,3 @@ plot_roc_from_module_obj <- function(module_obj, IS_smooth = F, Note = "say sth"
                      fit_note = module_obj$method_note %>% paste("test data ROC",Note,.),
                      IS_smooth = IS_smooth)
 }
-
