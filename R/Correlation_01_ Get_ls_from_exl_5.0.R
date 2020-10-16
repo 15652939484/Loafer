@@ -102,7 +102,7 @@ get_sigs_Loafer <- function(my_ls = my_ls){
   my_ls$Variable_for_selection <- Variable_for_selection
 
   ### New 提取要产生的新组别：
-  my_ls <- get_dif_values(my_ls = my_ls)
+  my_ls <- get_dif_values_Loafer(my_ls = my_ls)
 
   return(my_ls)
 }
@@ -124,6 +124,20 @@ get_raw_data_Loafer <- function(my_ls = my_ls){
     rownames(raw_data) <- raw_data %>% rownames %>% sub("[;|.]$", "", .)
   }
   my_ls$raw_data <-  raw_data
+  return(my_ls)
+}
+
+
+get_dif_values_Loafer <- function(my_ls = my_ls){
+  IS_dif_required <-  my_ls$note$group_involved %>% grepl("_-_",.) %>% sum() > 0
+  my_ls$note$IS_dif_required <- IS_dif_required ### 根据这个变量来判断是否要进行做差。
+  if(IS_dif_required){
+    groups_to_cal_v <- my_ls$note$group_involved  %>% grepl("_-_",.) %>% my_ls$note$group_involved[.] %>% unique()
+
+    paired_groups_df <- get_paired_groups(groups_to_cal_v = groups_to_cal_v)
+    my_ls$note$paired_groups_df <-  paired_groups_df
+
+  }
   return(my_ls)
 }
 
